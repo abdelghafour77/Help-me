@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Vote>
  */
-class QuestionFactory extends Factory
+class VoteFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +17,9 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->text,
-            'view_count' => rand(0, 1000),
-            // 'answers_count' => rand(0, 10),
+            'is_upvote' => $this->faker->boolean,
             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'answer_id' => \App\Models\Answer::inRandomOrder()->first()->id,
         ];
     }
 }
