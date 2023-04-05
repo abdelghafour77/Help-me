@@ -11,7 +11,7 @@ class UpdateTagRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateTagRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:tags,slug,' . $this->tag->id,
+            'color' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'image' => 'nullable|string|max:255',
         ];
     }
 }
