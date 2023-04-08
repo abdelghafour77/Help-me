@@ -1,17 +1,55 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Document</title>
+    <script async>
+        if (localStorage.getItem('color-theme') === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+
+<body>
+    <x-dashboard.navbar-dashboard />
+
+    <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+
+        <x-dashboard.sidebar />
+
+        <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
+            <main>
+                {{-- <x-dashboard.stacked /> --}}
+                <x-dashboard.settings />
+            </main>
+            <x-dashboard.footer-dashboard />
         </div>
-    </div>
-</x-app-layout>
+        {{-- <x-dashboard.stacked /> --}}
+        {{-- <x-dashboard.500 /> --}}
+        {{-- <x-dashboard.404 /> --}}
+        {{-- <x-dashboard.maintenance /> --}}
+        {{-- <x-dashboard.settings /> --}}
+
+        {{-- <x-dashboard.navbar-dashboard /> --}}
+        {{-- <x-dashboard.sidebar /> --}}
+        {{-- <x-dashboard.crud /> --}}
+
+
+
+
+        {{-- <x-dashboard.footer-dashboard /> --}}
+        {{-- <x-dashboard.footer /> --}}
+
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <script src="{{ asset('assets/app.bundle.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
+</body>
+
+
+</html>

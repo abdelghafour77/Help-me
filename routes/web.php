@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing-page');
 });
+// Route::get('/a', function () {
+//     return view('landing-page');
+// });
 Route::get('/me', function () {
     return view('test');
 });
