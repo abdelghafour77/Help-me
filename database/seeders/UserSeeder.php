@@ -17,6 +17,8 @@ class UserSeeder extends Seeder
             'full_name' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@admin.com',
+            'phone' => '0620785937',
+            'score' => 377,
             'password' => bcrypt('password'),
         ])->assignRole('admin');
         // create 10 user using factory and assign role user
