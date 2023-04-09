@@ -20,6 +20,9 @@ Route::get('/', function () {
 // Route::get('/a', function () {
 //     return view('landing-page');
 // });
+Route::get('/settings', function () {
+    return view('settings');
+});
 Route::get('/me', function () {
     return view('test');
 });
