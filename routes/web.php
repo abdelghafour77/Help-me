@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ Route::get('/', function () {
 Route::get('/settings', function () {
     return view('settings');
 });
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
 Route::get('/me', function () {
     return view('test');
 });
