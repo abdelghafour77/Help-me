@@ -13,7 +13,10 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        // get all tags
+        $tags = Tag::all();
+        // return view
+        return view('tags', compact('tags'));
     }
 
     /**
@@ -49,7 +52,10 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        // return ajax response with tag data
+        return response()->json([
+            'tag' => $tag
+        ]);
     }
 
     /**
@@ -70,6 +76,6 @@ class TagController extends Controller
         $tag->delete();
 
         // redirect to tag index
-        return redirect()->route('tag.index');
+        return redirect()->back()->with('success', 'Tag deleted successfully');
     }
 }

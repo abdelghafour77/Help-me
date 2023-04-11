@@ -50,8 +50,11 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        // return ajax response
-        return response()->json(User::find($id));
+        // return ajax response with user data and role of user
+        return response()->json([
+            'user' => User::find($id),
+            'role' => User::find($id)->roles->first()->name
+        ]);
     }
 
     /**
@@ -59,7 +62,19 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        // get user
+        $user = User::find($id);
+        // get role
+        $role = Role::findByName($request->role);
+        // remove all roles
+        $user->removeRole($user->roles->first()->name);
+        // assign role
+        $user->assignRole($request->role);
+        // update user
+        $user->update($request->all());
+        // return view flash success message
+        return redirect()->back()->with('success', 'User updated successfully');
     }
 
     /**

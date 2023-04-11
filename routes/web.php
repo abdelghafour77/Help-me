@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
@@ -26,8 +27,16 @@ Route::get('/settings', function () {
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/tags', [TagController::class, 'index']);
+// delete tag
+Route::delete('/tags/{tag}', [TagController::class, 'destroy']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+// delete user
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
 
 Route::get('/admin/users/{id}', [UserController::class, 'edit']);
+Route::get('/admin/tag/{id}', [TagController::class, 'edit']);
 Route::get('/me', function () {
     return view('test');
 });

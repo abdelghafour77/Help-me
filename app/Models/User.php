@@ -20,8 +20,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'full_name',
+        'username',
         'email',
+        'phone',
+        'birthday',
+        'score',
+        'status',
         'password',
     ];
 
@@ -59,5 +64,4 @@ class User extends Authenticatable
     {
         return $this->morphToMany(Question::class, 'votable');
     }
-
 }
