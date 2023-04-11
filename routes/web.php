@@ -27,6 +27,7 @@ Route::get('/settings', function () {
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
+Route::get('/admin/users/{id}', [UserController::class, 'edit']);
 Route::get('/me', function () {
     return view('test');
 });

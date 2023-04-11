@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,8 +15,10 @@ class UserController extends Controller
     {
         // get all users
         $users = User::all();
+        // get all roles
+        $roles = Role::all();
         // return view
-        return view('users', compact('users'));
+        return view('users', compact('users', 'roles'));
     }
 
     /**
@@ -47,7 +50,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // return ajax response
+        return response()->json(User::find($id));
     }
 
     /**
