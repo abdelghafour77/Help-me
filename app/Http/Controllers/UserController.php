@@ -82,6 +82,13 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // get user
+        $user = User::find($id);
+        // remove all roles
+        $user->removeRole($user->roles->first()->name);
+        // delete user
+        $user->delete();
+        // return view flash success message
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 }

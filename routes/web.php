@@ -51,8 +51,6 @@ Route::middleware('auth')->group(function () {
     // User
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
     Route::put('/users/{id}', [UserController::class, 'update']);
-
-
     Route::get('/admin/users/{id}', [UserController::class, 'edit']);
 });
 
