@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 
+use App\Http\Controllers\LogController;
+
+
 class TagController extends Controller
 {
     /**
@@ -33,12 +36,16 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
-        // create tag
+        $log = new LogController();
+
         $tag = $request->validated();
-        // add slug
+
         $tag['slug'] = Str::slug($tag['name']);
-        Tag::create($tag);
-        // redirect to tag index
+
+        $ta = Tag::create($tag);
+
+        $log->logMe("info", "Created tag ID: $ta->id", "POST", $request->ip());
+
         return redirect()->back();
     }
 

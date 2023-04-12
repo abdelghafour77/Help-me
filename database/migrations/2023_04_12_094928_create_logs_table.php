@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ip');
             $table->string('user_id');
             $table->string('user_role');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
