@@ -39,14 +39,14 @@ class TagSeeder extends Seeder
                 "name" => "laravel",
                 "slug" => "laravel",
                 "description" => "laravel description",
-                "color" => "#eeee",
+                "color" => "red-700",
                 "image" => "laravel.png"
             ],
             [
                 "name" => "php",
                 "slug" => "php",
                 "description" => "php description",
-                "color" => "#eeee",
+                "color" => "indigo-700",
                 "image" => "php.png"
 
             ],
@@ -54,14 +54,14 @@ class TagSeeder extends Seeder
                 "name" => "javascript",
                 "slug" => "javascript",
                 "description" => "javascript description",
-                "color" => "#eeee",
+                "color" => "yellow-300",
                 "image" => "javascript.png"
             ],
             [
                 "name" => "vuejs",
                 "slug" => "vuejs",
                 "description" => "vuejs description",
-                "color" => "#eeee",
+                "color" => "green-500",
                 "image" => "vuejs.png"
             ]
         ];

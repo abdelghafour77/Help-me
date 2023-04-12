@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 
@@ -33,9 +34,12 @@ class TagController extends Controller
     public function store(StoreTagRequest $request)
     {
         // create tag
-        $tag = Tag::create($request->validated());
+        $tag = $request->validated();
+        // add slug
+        $tag['slug'] = Str::slug($tag['name']);
+        Tag::create($tag);
         // redirect to tag index
-        return redirect()->route('tag.index');
+        return redirect()->back();
     }
 
     /**
@@ -50,12 +54,13 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
+        $tag = Tag::find($id);
         // return ajax response with tag data
-        return response()->json([
-            'tag' => $tag
-        ]);
+        return response()->json(
+            $tag
+        );
     }
 
     /**
@@ -65,6 +70,8 @@ class TagController extends Controller
     {
         // update tag
         $tag->update($request->validated());
+        // redirect to tag index
+        return redirect()->back()->with('success', 'Tag updated successfully');
     }
 
     /**

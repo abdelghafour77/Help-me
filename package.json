@@ -7,6 +7,7 @@
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",
+        "alpinejs-slug": "^1.1.0",
         "autoprefixer": "^10.4.14",
         "axios": "^1.1.2",
         "flowbite": "^1.6.4",
@@ -20,6 +21,7 @@
     "dependencies": {
         "@popperjs/core": "^2.10.2",
         "apexcharts": "^3.29.0",
-        "flowbite": "^1.6.3"
+        "flowbite": "^1.6.3",
+        "flowbite-datepicker": "^1.2.2"
     }
 }
