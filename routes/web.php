@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -45,13 +46,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tags/{tag}', [TagController::class, 'destroy']);
     Route::get('/tags', [TagController::class, 'index']);
     Route::post('/tags', [TagController::class, 'store']);
-    // put is for update
     Route::put('/tags/{tag}', [TagController::class, 'update']);
 
     // User
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/admin/users/{id}', [UserController::class, 'edit']);
+
+    //log
+    Route::get('/logs', [LogController::class, 'index']);
 });
 
 require __DIR__ . '/auth.php';
