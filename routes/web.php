@@ -5,6 +5,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/admin/users/{id}', [UserController::class, 'edit']);
 
-    //log
+    // log
     Route::get('/logs', [LogController::class, 'index']);
     Route::get('/admin/logs/{id}', [LogController::class, 'edit']);
+
+    // Search
+
+    Route::get('/search', [SearchController::class, 'search']);
 });
 
 require __DIR__ . '/auth.php';
