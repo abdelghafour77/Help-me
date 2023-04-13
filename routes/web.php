@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
     //log
     Route::get('/logs', [LogController::class, 'index']);
+    Route::get('/admin/logs/{id}', [LogController::class, 'edit']);
 });
 
 require __DIR__ . '/auth.php';

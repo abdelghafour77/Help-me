@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->morphToMany(Question::class, 'votable');
     }
+    // logs
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Controllers\LogController;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class UpdateTagRequest extends FormRequest
 {
@@ -28,5 +30,16 @@ class UpdateTagRequest extends FormRequest
             'description' => 'nullable|string|max:255',
             'image' => 'nullable|string|max:255',
         ];
+    }
+    public function failedValidation(Validator $validator)
+    {
+        dd($validator);
+        $log = new LogController();
+
+        $errors = implode(' ', $validator->errors()->all());
+
+        $log->logMe('error', "Tag cannot be updated cause of : $errors ", 'PUT', $this->ip());
+
+        return redirect()->back()->withErrors($validator)->withInput();
     }
 }

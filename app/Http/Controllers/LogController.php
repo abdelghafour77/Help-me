@@ -29,4 +29,10 @@ class LogController extends Controller
 
         $log->save();
     }
+    public function edit($id)
+    {
+        //    return jsonresponse log with user
+        $log = Log::with('user')->find($id);
+        return response()->json($log);
+    }
 }

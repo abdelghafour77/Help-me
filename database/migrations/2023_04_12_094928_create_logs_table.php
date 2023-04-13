@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('method');
             $table->string('message');
             $table->string('ip');
-            $table->string('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('user_role');
             $table->string('url')->nullable();
             $table->timestamps();

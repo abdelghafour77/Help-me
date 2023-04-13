@@ -24,8 +24,7 @@
                         </h6>
                         <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
                             <li class="flex items-center">
-                                <input id="apple" type="checkbox" value=""
-                                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="apple" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
 
                                 <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
                                     Completed (56)
@@ -33,8 +32,7 @@
                             </li>
 
                             <li class="flex items-center">
-                                <input id="fitbit" type="checkbox" value="" checked
-                                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="fitbit" type="checkbox" value="" checked class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
 
                                 <label for="fitbit" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
                                     Cancelled (56)
@@ -42,8 +40,7 @@
                             </li>
 
                             <li class="flex items-center">
-                                <input id="dell" type="checkbox" value=""
-                                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="dell" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
 
                                 <label for="dell" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
                                     In progress (56)
@@ -51,8 +48,7 @@
                             </li>
 
                             <li class="flex items-center">
-                                <input id="asus" type="checkbox" value="" checked
-                                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                <input id="asus" type="checkbox" value="" checked class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
 
                                 <label for="asus" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
                                     In review (97)
@@ -103,7 +99,6 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
-
                                     <th scope="col" width="%1" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         Type
                                     </th>
@@ -122,13 +117,10 @@
                                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         User role
                                     </th>
-                                    {{-- <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                        URL
-                                    </th> --}}
                                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         Created at
                                     </th>
-                                    <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                    <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         More
                                     </th>
 
@@ -156,8 +148,7 @@
                                             @elseif($log->type == 'warning')
                                                 <span class="bg-blue-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-400 border border-yellow-400">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                                     </svg>
                                                     {{ $log->type }}
                                                 </span>
@@ -187,34 +178,18 @@
                                         <td class="text-center p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                             {{ $log->user_role }}
                                         </td>
-                                        {{-- <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400 text-center">
-                                            {{ $log->url }}
-                                        </td> --}}
-                                        <td class="p-4 whitespace-nowrap">
-                                            <span title="{{ $log->created_at }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        <td class="p-4 whitespace-nowrap text-center">
+                                            <span title="{{ $log->created_at }}" class="text-center px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 {{ $log->created_at->diffForHumans() }}
                                             </span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400 text-center">
-                                            {{-- <div class="flex justify-end gap-4"> --}}
-
-                                            {{-- <button data-drawer-target="drawer-user"></button> --}}
-                                            <button type="button" onclick="editeuser({{ $log->id }})" name="edite" data-drawer-target="drawer-user" data-drawer-show="drawer-user" aria-controls="drawer-user" data-drawer-placement="right">
-
+                                            <button type="button" onclick="getlog({{ $log->id }})" name="get" data-drawer-target="drawer-log" data-drawer-show="drawer-log" aria-controls="drawer-log" data-drawer-placement="right">
                                                 <svg class="h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                                 </svg>
-
                                             </button>
-                                            {{-- <button type="button" name="delete">
-                                                    <svg class="h-6 w-6 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                                    </svg>
-                                                </button> --}}
-                                            {{-- </div> --}}
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -227,8 +202,8 @@
         <!-- Card Footer -->
         <div class="flex items-center justify-between pt-3 sm:pt-6">
             <div>
-                <button class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" type="button" data-dropdown-toggle="transactions-dropdown">Last 7 days <svg class="w-4 h-4 ml-2"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <button class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" type="button" data-dropdown-toggle="transactions-dropdown">Last 7 days <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg></button>
                 <!-- Dropdown menu -->
@@ -271,123 +246,85 @@
         </div>
     </div>
     {{-- drawer --}}
-    <div id="drawer-user" aria-hidden="true" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
-        <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Edit User</h5>
-        <button type="button" data-drawer-dismiss="drawer-user" aria-controls="drawer-user"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+    <div id="drawer-log" aria-hidden="true" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+        <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Log Info</h5>
+        <button type="button" data-drawer-dismiss="drawer-log" aria-controls="drawer-log" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
             <span class="sr-only">Close menu</span>
         </button>
+        <div class="space-y-4 text-gray-700 dark:text-white">
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Message: </h4>
+            <span class="" id="message"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> User ID: </h4>
+            <span id="user_id"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> User full name: </h4>
+            <span id="user_full_name"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> User email: </h4>
+            <span id="user_email"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> User role: </h4>
+            <span id="user_role"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Date: </h4>
+            <span id="date"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Method: </h4>
+            <span id="method"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Type: </h4>
+            <span id="type"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> IP: </h4>
+            <span id="ip"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> URL: </h4>
+            <span>
+                <a href="" id="url" target="_blank" class="text-blue-500 hover:text-blue-600"></a>
+            </span>
 
-
-        <form action="" method="POST" id="user_form">
-            @csrf
-            @method('PUT')
-            <div class="space-y-4">
-                <input type="hidden" id="user_id" value="">
-                <div>
-                    <label for="full_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Full Name') }}</label>
-                    <input type="text" name="full_name" id="full_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="{{ __('Full Name') }}" required="">
-                </div>
-                <div>
-                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Username') }}</label>
-                    <input type="text" name="username" id="username"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="{{ __('Username') }}" required="">
-                </div>
-
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Email') }}</label>
-                    <input type="email" name="email" id="email"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="{{ __('Email') }}" required="">
-                </div>
-                <div>
-                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Phone Number') }}</label>
-                    <input type="phone" name="phone" id="phone"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="{{ __('Phone Number') }}" required="">
-                </div>
-                <div>
-                    <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Birthday') }}</label>
-                    <input type="date" name="birthday" id="birthday"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="{{ __('Birthday') }}">
-                </div>
-
-                <div>
-                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                    <select id="status" name="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected disabled>Status</option>
-                        <option value="1">Enabled</option>
-                        <option value="0">Disabled</option>
-
-                    </select>
-                </div>
-                <div>
-                    <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                    <select id="role" name="role"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected disabled>Select Role</option>
-
-                    </select>
-                </div>
-                <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
-                    <button type="submit"
-                        class="text-white w-full justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                        Update User
-                    </button>
-                    <form action="" method="post" id="form-delete">
-                        @method('DELETE')
-                        <button type="submit"
-                            class="text-white w-full justify-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                            Delete User
-                        </button>
-                    </form>
-                    {{-- <button type="button" data-drawer-dismiss="drawer-user" aria-controls="drawer-user"
-                            class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                            <svg aria-hidden="true" class="w-5 h-5 -ml-1 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            Cancel
-                        </button> --}}
-                </div>
-        </form>
+        </div>
     </div>
 
     {{-- include jquery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- include bootstrap --}}
     <script>
-        // get user using ajax
-        function editeuser(id) {
+        // get log using ajax
+        function getlog(id) {
             $.ajax({
-                url: '/admin/users/' + id,
+                url: '/admin/logs/' + id,
                 type: 'GET',
                 dataType: 'json',
                 complete: function(data) {
+                    $('#message').html(data.responseJSON.message)
+                    $('#user_id').html(data.responseJSON.user_id)
+                    $('#user_full_name').html(data.responseJSON.user.full_name)
+                    $('#user_email').html(data.responseJSON.user.email)
+                    $('#user_role').html(data.responseJSON.user_role)
+                    $('#date').html(data.responseJSON.created_at)
+                    $('#ip').html(data.responseJSON.ip)
+                    $('#url').attr('href', data.responseJSON.url)
+                    $('#url').text(data.responseJSON.url)
 
-                },
-                success: function(data) {
-                    // change form action #form-delete
-                    $('#form-delete').attr('action', '/users/' + data.user.id);
+                    if (data.responseJSON.type == "error") {
+                        $('#type').html(
+                            '<span class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"><svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> Error </span>'
+                        )
+                    } else if (data.responseJSON.type == "info") {
+                        $('#type').html(
+                            '<span class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"><svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> Info </span>'
+                        )
 
-                    $('#user_id').val(data.user.id);
-                    $('#user_form').attr('action', '/users/' + data.user.id);
-                    $('#full_name').val(data.user.full_name);
-                    $('#username').val(data.user.username);
-                    $('#email').val(data.user.email);
-                    $('#phone').val(data.user.phone);
-                    $('#birthday').val(data.user.birthday);
-                    $('#status').val(data.user.status);
-                    $('#role').val(data.role);
-
-
+                    } else if (data.responseJSON.type == "warning") {
+                        $('#type').html(
+                            '<span class="bg-blue-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-400 border border-yellow-400"><svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> Warning </span>'
+                        )
+                    }
+                    if (data.responseJSON.method == 'GET') {
+                        $('#method').html('<span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">' + data.responseJSON.method + '</span>')
+                    } else if (data.responseJSON.method == 'POST') {
+                        $('#method').html('<span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">' + data.responseJSON.method + '</span>')
+                    } else if (data.responseJSON.method == 'PUT') {
+                        $('#method').html('<span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">' + data.responseJSON.method + '</span>')
+                    } else if (data.responseJSON.method == 'DELETE') {
+                        $('#method').html('<span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">' + data.responseJSON.method + '</span>')
+                    }
                 }
             });
         }

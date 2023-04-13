@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreTagRequest;
-use App\Http\Requests\UpdateTagRequest;
 
 use App\Http\Controllers\LogController;
+use App\Http\Requests\UpdateTagRequest;
 
 
 class TagController extends Controller
@@ -77,6 +78,9 @@ class TagController extends Controller
     {
         // update tag
         $tag->update($request->validated());
+        $ta = Tag::find($tag->id);
+        $log = new LogController();
+        $log->logMe("info", "Updated tag ID: $ta->id", "PUT", $request->ip());
         // redirect to tag index
         return redirect()->back()->with('success', 'Tag updated successfully');
     }
@@ -84,11 +88,14 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag, Request $request)
     {
         // delete tag
         $tag->delete();
 
+        $log = new LogController();
+
+        $log->logMe("warning", "Deleted tag ID: $tag->id", "DELETE", $request->ip());
         // redirect to tag index
         return redirect()->back()->with('success', 'Tag deleted successfully');
     }
