@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('message');
             $table->string('ip');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('user_role');
             $table->string('url')->nullable();
             $table->timestamps();
