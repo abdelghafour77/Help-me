@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,8 +60,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/logs/{id}', [LogController::class, 'edit']);
 
     // Search
-
     Route::get('/search', [SearchController::class, 'search']);
+
+    // Role
+    Route::get('/roles', [RoleController::class, 'index']);
+    Route::get('/admin/roles/{id}', [RoleController::class, 'edit']);
+    Route::post('/roles', [RoleController::class, 'store']);
+    Route::put('/roles/{id}', [RoleController::class, 'update']);
+    Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
 });
 
 require __DIR__ . '/auth.php';
