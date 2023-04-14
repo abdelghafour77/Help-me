@@ -23,6 +23,7 @@
         "@popperjs/core": "^2.10.2",
         "apexcharts": "^3.29.0",
         "flowbite": "^1.6.3",
-        "flowbite-datepicker": "^1.2.2"
+        "flowbite-datepicker": "^1.2.2",
+        "tinymce": "^6.4.1"
     }
 }
