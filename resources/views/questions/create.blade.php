@@ -26,7 +26,7 @@
                 <div class="mb-6">
                     <label class="block">
                         <span class="text-gray-700">Description</span>
-                        <textarea class="tinymce" name="content"></textarea>
+                        <x-forms.tinymce-editor />
                     </label>
                     @error('description')
                         <div class="text-sm text-red-600">{{ $message }}</div>
@@ -39,7 +39,7 @@
         </div>
 
     </div>
-    {{-- <script src="{{ asset('build/assets/tinymce-85d878e8.js') }}"></script> --}}
-    <script src="{{ asset('assets/js/tinymce.min.js') }}"></script>
-    <script src="{{ asset('assets/js/tinymce.js') }}"></script>
+    <x-head.tinymce-config />
+
+
 </x-home-layout>
