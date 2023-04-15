@@ -7,7 +7,7 @@
                 @csrf
                 <div class="mb-6">
                     <label class="block">
-                        <span class="text-gray-700">Title</span>
+                        <span class="text-gray-700 dark:text-white">Title</span>
                         <input type="text" name="title" class="block w-full @error('title') border-red-500 @enderror mt-1 rounded-md" placeholder="" value="{{ old('title') }}" />
                     </label>
                     @error('title')
@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-6">
                     <label class="block">
-                        <span class="text-gray-700">Slug</span>
+                        <span class="text-gray-700 dark:text-white">Slug</span>
                         <input type="text" name="slug" class="block w-full @error('slug') border-red-500 @enderror mt-1 rounded-md" placeholder="" value="{{ old('slug') }}" />
                     </label>
                     @error('slug')
@@ -25,7 +25,7 @@
                 </div>
                 <div class="mb-6">
                     <label class="block">
-                        <span class="text-gray-700">Description</span>
+                        <span class="text-gray-700 dark:text-white">Description</span>
                         <x-forms.tinymce-editor />
                     </label>
                     @error('description')
