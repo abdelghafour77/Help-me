@@ -8,7 +8,9 @@
                 <div class="mb-6">
                     <label class="block">
                         <span class="text-gray-700 dark:text-white">Title</span>
-                        <input type="text" name="title" class="block w-full @error('title') border-red-500 @enderror mt-1 rounded-md" placeholder="" value="{{ old('title') }}" />
+                        <input type="text" name="title"
+                            class="@error('title') border-red-500 @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="" value="{{ old('title') }}" />
                     </label>
                     @error('title')
                         <div class="text-sm text-red-600">{{ $message }}</div>
@@ -17,7 +19,9 @@
                 <div class="mb-6">
                     <label class="block">
                         <span class="text-gray-700 dark:text-white">Slug</span>
-                        <input type="text" name="slug" class="block w-full @error('slug') border-red-500 @enderror mt-1 rounded-md" placeholder="" value="{{ old('slug') }}" />
+                        <input type="text" name="slug"
+                            class="@error('slug') border-red-500 @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="" value="{{ old('slug') }}" />
                     </label>
                     @error('slug')
                         <div class="text-sm text-red-600">{{ $message }}</div>
