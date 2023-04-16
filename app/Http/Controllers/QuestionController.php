@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Question;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
@@ -21,7 +22,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        // get all tags
+        $tags = Tag::all();
+
+        return view('questions.create', compact('tags'));
     }
 
     /**
