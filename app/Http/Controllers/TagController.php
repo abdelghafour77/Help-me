@@ -71,6 +71,14 @@ class TagController extends Controller
         );
     }
 
+    public function allTags()
+    {
+        $tags = Tag::all();
+        return response()->json(
+            $tags
+        );
+    }
+
     /**
      * Update the specified resource in storage.
      */

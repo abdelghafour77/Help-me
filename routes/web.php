@@ -43,13 +43,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    // Tag
 
+    // Tag
     Route::get('/admin/tag/{id}', [TagController::class, 'edit']);
     Route::delete('/tags/{tag}', [TagController::class, 'destroy']);
     Route::get('/tags', [TagController::class, 'index']);
     Route::post('/tags', [TagController::class, 'store']);
     Route::put('/tags/{tag}', [TagController::class, 'update']);
+    Route::get('/admin/tags', [TagController::class, 'allTags']);
 
     // User
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
 
     // Question
     Route::get('/askQuestion', [QuestionController::class, 'create']);
+    Route::post('/askQuestion', [QuestionController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';

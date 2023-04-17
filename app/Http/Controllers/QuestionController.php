@@ -33,7 +33,7 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
