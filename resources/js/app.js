@@ -34,10 +34,10 @@ function populateList(clist) {
         templates: {
             tag: function (tagData) {
                 try {
-                    return `<tag title='${tagData.value}' contenteditable='false' spellcheck="false" class='tagify__tag bg-${tagData.color ? tagData.color : ""}' ${this.getAttributes(tagData)}>
+                    return `<tag title='${tagData.value}' contenteditable='false' spellcheck="false" class='tagify__tag rounded-full bg-${tagData.color ? tagData.color : ""}' ${this.getAttributes(tagData)}>
                         <x title='remove tag' class='tagify__tag__removeBtn'></x>
                         <div>
-                            <span class='tagify__tag-text'>${tagData.value}</span>
+                            <span class='tagify__tag-text ${(parseInt(tagData.color.split("-")[1]) > 500) ? 'text-white' : 'text-black'}'>${tagData.value}</span>
                         </div>
                     </tag>`
                 }
@@ -46,8 +46,8 @@ function populateList(clist) {
 
             dropdownItem: function (tagData) {
                 try {
-                    return `<div ${this.getAttributes(tagData)} class='tagify__dropdown__item bg-${tagData.color ? tagData.color : ""}' >
-                            <img onerror="this.style.visibility = 'hidden'"
+                    return `<div ${this.getAttributes(tagData)} class='tagify__dropdown__item' >
+                            <img onerror="this.style.visibility = 'hidden'">
                             <span>${tagData.value}</span>
                         </div>`
                 }
