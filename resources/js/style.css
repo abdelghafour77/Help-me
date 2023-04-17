@@ -7,7 +7,7 @@
     --tags-border-color: #DDD;
     --tags-hover-border-color: #CCC;
     --tags-focus-border-color: #3595f6;
-    --tag-bg: #E5E5E5;
+    --tag-bg: none;
     --tag-hover: #D3E2E2;
     --tag-text-color: black;
     --tag-text-color--edit: black;
@@ -45,7 +45,7 @@
     --tags-border-color: #565656;
     --tags-hover-border-color: #424242;
     --tags-focus-border-color: #3595f6;
-    --tag-bg: #0a0a17;
+    --tag-bg: none;
     --tag-hover: #14142e;
     --tag-text-color: rgb(227, 227, 227);
     --tag-text-color--edit: rgb(255, 255, 255);

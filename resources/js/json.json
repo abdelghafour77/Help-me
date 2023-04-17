@@ -1,0 +1,17 @@
+[
+    {
+        "id": 2,
+        "name": "php",
+        "color": "green-400"
+    },
+    {
+        "id": 3,
+        "name": "javascript",
+        "color": "yellow-300"
+    },
+    {
+        "id": 4,
+        "name": "vuejs",
+        "color": "green-500"
+    }
+]
