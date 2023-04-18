@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
     // Question
     Route::get('/askQuestion', [QuestionController::class, 'create']);
     Route::post('/askQuestion', [QuestionController::class, 'store']);
+    Route::get('/question', [QuestionController::class, 'index']);
 });
 
 require __DIR__ . '/auth.php';
