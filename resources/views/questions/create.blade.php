@@ -17,16 +17,17 @@
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label for="exampletags" class="inline-block mb-2">Tags</label>
+
+                    <label for="exampletags" class="text-gray-700 dark:text-white">Tags</label>
 
                     <input type="text" name="tags" id="tags" value="{{ old('tags') }}"
-                        class="tagify w-full leading-5 relative text-sm py-2 px-4 rounded text-gray-800 bg-white border border-gray-300 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-300 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
-                        id="exampletags" minlength="2">
+                        class="tagify w-full leading-5 relative text-sm py-2 px-4 rounded text-gray-800 bg-white border border-gray-300 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-300 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600" id="exampletags"
+                        minlength="2">
                 </div>
                 <div class="mb-6">
                     <label class="block">
                         <span class="text-gray-700 dark:text-white">Description</span>
-                        <x-forms.tinymce-editor />
+                        <x-tinymce-editor />
                     </label>
                     @error('description')
                         <div class="text-sm text-red-600">{{ $message }}</div>
