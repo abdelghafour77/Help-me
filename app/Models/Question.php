@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'view_count','answer_count', 'user_id'];
+    protected $fillable = ['title', 'description', 'view_count', 'answer_count', 'user_id'];
 
     // relationship with tag
     public function tags()
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return $this->belongsToMany(Tag::class);
     }
 
     // relationship with answer
@@ -28,5 +28,4 @@ class Question extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }

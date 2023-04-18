@@ -33,7 +33,15 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        dd($request->all());
+        $request->all();
+        $request->merge(['user_id' => auth()->user()->id]);
+        $question = Question::create($request->all());
+
+        $tags = json_decode($request->input('tags'));
+        $tags = collect($tags);
+        $tags = $tags->pluck('id')->toArray();
+        $question->tags()->attach($tags);
+        return redirect()->back()->with('success', 'Question created successfully');
     }
 
     /**
