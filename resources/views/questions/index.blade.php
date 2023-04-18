@@ -1,24 +1,18 @@
 <x-home-layout>
     {{-- @dd() --}}
-    <div class="">
-        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800 xl:mb-0">
-            <div class="flex items-center justify-between mb-4">
+    <div class="pt-16 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
+        <div class="p-4 mb-4 col-span-2 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800 xl:mb-0">
+            {{-- <div class="flex items-center justify-between mb-4">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Smart chat</h3>
                 <a href="#" class="inline-flex items-center p-2 text-sm font-medium rounded-lg text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
                     View all
                 </a>
-            </div>
+            </div> --}}
             <!-- Chat -->
             <form class="overflow-y-auto ">
                 <article class="mb-5">
                     <footer class="flex items-center justify-between mb-2">
-                        <div class="flex items-center">
-                            <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img class="w-6 h-6 mr-2 rounded-full" src="{{ asset('/storage/image/user/' . $question->user->avatar) }}"alt="{{ $question->user->full_name }}">{{ $question->user->full_name }}</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">
-                                    {{--  created at using carbon --}}
-                                    {{ $question->created_at->format('d/m/Y h:i A') }}
-                                </time></p>
-                        </div>
+                        <div></div>
                         <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                             class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -43,15 +37,7 @@
                         </div>
                     </footer>
                     <H2 class="text-3xl font-bold text-gray-900 dark:text-gray-200">{{ $question->title }}</H2>
-                    {{-- foreach tags  --}}
-                    <div class=" overflow-x-auto">
-                        @foreach ($question->tags as $tag)
-                            @php
-                                $c = explode('-', $tag->color)[1] < 400;
-                            @endphp
-                            <a href="#" class="inline-flex border border-white shadow-lg items-center px-2 py-1 text-xs font-medium {{ $c ? 'text-gray-700' : 'text-white' }}  rounded-full bg-{{ $tag->color }}">{{ $tag->name }}</a>
-                        @endforeach
-                    </div>
+
                     <article class="prose dark:prose-invert">
                         {!! $question->description !!}
                     </article>
@@ -370,6 +356,42 @@
                 </div>
             </form>
         </div>
+        <!--Info  -->
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div id="carousel" class="relative" data-carousel="">
+                <div class="relative mx-auto overflow-hidden ">
+                    <div class=" items-center pb-8">
+                        <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
+                            <img class="w-12 h-12 mr-2 rounded-full" src="{{ asset('/storage/image/user/' . $question->user->avatar) }}"alt="{{ $question->user->full_name }}">
+                            {{ $question->user->full_name }}
+                        </p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            <time pubdate datetime="2022-02-08 {{ $question->created_at->format('Y-m-d') }}" title="{{ $question->created_at->format('d/m/Y h:i A') }}">
+                                {{--  created at using carbon human diff --}}
+                                {{ 'Published ' . $question->created_at->diffForHumans() }}
+                            </time>
+                        </p>
+                    </div>
+
+                    <div class="overflow-x-auto pb-3">
+                        <h2 class="text-2xl pb-3 text-gray-900 dark:text-white">{{ __('Tags') }}</h2>
+                        @foreach ($question->tags as $tag)
+                            @php
+                                $c = explode('-', $tag->color)[1] < 400;
+                            @endphp
+                            <a href="#" class="inline-flex border border-gray-400 shadow-sm items-center px-2 py-1 m-1 text-xs font-medium {{ $c ? 'text-gray-700' : 'text-white' }}  rounded-full bg-{{ $tag->color }}">{{ $tag->name }}</a>
+                        @endforeach
+                    </div>
+                    <div class="pb-3">
+                        <h2 class="text-2xl pb-3 text-gray-900 dark:text-white">
+                            {{ __('Other Suggestions') }}
+                        </h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
+
 </x-home-layout>
