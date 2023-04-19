@@ -48,9 +48,10 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Question $question)
+    public function show(String $id)
     {
-        //
+        $question = Question::find($id);
+        return view('questions.index', compact('question'));
     }
 
     /**
