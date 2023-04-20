@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TagSeeder::class,
             QuestionSeeder::class,
+            QuestionTagSeeder::class,
             AnswerSeeder::class,
             VoteSeeder::class,
             LogSeeder::class,
