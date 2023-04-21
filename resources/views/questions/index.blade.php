@@ -1,7 +1,7 @@
 <x-home-layout>
     {{-- @dd() --}}
-    <div class="pt-16 grid grid-cols-1 xl:grid-cols-3 xl:gap-4">
-        <div class="p-4 mb-4 col-span-2 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800 xl:mb-0">
+    <div class="pt-20 pb-10 px-4 grid grid-cols-1 xl:grid-cols-3 xl:gap-4 bg-white dark:bg-gray-950">
+        <div class="p-4 mb-4 col-span-2 bg-gray-50 border border-gray-200 rounded-lg shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800 xl:mb-0">
             {{-- <div class="flex items-center justify-between mb-4">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Smart chat</h3>
                 <a href="#" class="inline-flex items-center p-2 text-sm font-medium rounded-lg text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
@@ -9,10 +9,10 @@
                 </a>
             </div> --}}
             <!-- Chat -->
-            <form class="overflow-y-auto ">
+            <form class="overflow-y-auto p-2">
                 <article class="mb-5">
-                    <footer class="flex items-center justify-between mb-2">
-                        <div></div>
+                    <footer class="flex items-center justify-between mb-7">
+                        <H2 class="text-3xl font-bold text-gray-900 dark:text-gray-200">{{ $question->title }}</H2>
                         <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                             class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -36,19 +36,15 @@
                             </ul>
                         </div>
                     </footer>
-                    <H2 class="text-3xl font-bold text-gray-900 dark:text-gray-200">{{ $question->title }}</H2>
 
                     <article class="prose dark:prose-invert">
                         {!! $question->description !!}
                     </article>
-                    {{-- <a href="#" class="inline-flex items-center text-xs font-medium text-primary-700 sm:text-sm dark:text-primary-500">
-                        4 replies
-                        <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path>
-                        </svg>
-                    </a> --}}
+
                 </article>
-                <article class="mb-5">
+                {{-- title Answers --}}
+                <h1 class="font-black text-3xl text-gray-900 dark:text-gray-200">Answers</h1>
+                <article class="pl-12 mb-5">
                     <footer class="flex items-center justify-between mb-2">
                         <div class="flex items-center">
                             <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img class="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Bonnie avatar">Bonnie Green</p>
@@ -145,185 +141,8 @@
                         </button>
                     </div>
                 </article>
-                <article class="mb-5">
-                    <footer class="flex items-center justify-between mb-2">
-                        <div class="flex items-center">
-                            <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img class="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"alt="Jese avatar">Jese Leos</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
-                        </div>
-                        <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
-                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                            </svg>
-                            <span class="sr-only">Comment settings</span>
-                        </button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownComment3" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </footer>
-                    <p class="mb-2 text-gray-900 dark:text-white">
-                        Ok <a href="#" class="font-medium hover:underline text-primary-600 dark:text-primary-500">@team</a> I'am attaching our offer and pitch deck. Take your time to review everything. I'am looking forward to the next steps! Thank you.
-                    </p>
-                    <p class="mb-3 text-gray-900 dark:text-white">Looking forward to it! Thanks.</p>
-                    <div class="items-center 2xl:space-x-4 2xl:flex">
-                        <!-- Item -->
-                        <div class="flex items-center p-3 mb-3.5 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <div class="flex items-center justify-center w-10 h-10 mr-3 rounded-lg bg-primary-100 dark:bg-primary-900">
-                                <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path clip-rule="evenodd" fill-rule="evenodd"
-                                        d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z">
-                                    </path>
-                                    <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z"></path>
-                                </svg>
-                            </div>
-                            <div class="mr-4">
-                                <p class="text-sm font-semibold text-gray-900 dark:text-white">flowbite_offer_345"</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">PDF, 2.3 MB</p>
-                            </div>
-                            <div class="flex items-center ml-auto">
-                                <button type="button" class="p-2 rounded hover:bg-gray-100">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path clip-rule="evenodd" fill-rule="evenodd"
-                                            d="M12 2.25a.75.75 0 01.75.75v11.69l3.22-3.22a.75.75 0 111.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.22 3.22V3a.75.75 0 01.75-.75zm-9 13.5a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z">
-                                        </path>
-                                    </svg>
-                                    <span class="sr-only">Download</span>
-                                </button>
-                                <button type="button" class="p-2 rounded hover:bg-gray-100">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
-                                    </svg>
-                                    <span class="sr-only">Actions</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Item -->
-                        <div class="flex items-center p-3 mb-3.5 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <div class="flex items-center justify-center w-10 h-10 mr-3 bg-teal-100 rounded-lg dark:bg-teal-900">
-                                <svg class="w-5 h-5 text-teal-600 lg:w-6 lg:h-6 dark:text-teal-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
-                                </svg>
-                            </div>
-                            <div class="mr-4">
-                                <p class="text-sm font-semibold text-gray-900 dark:text-white">bergside_pitch"</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">PPTX, 10.1 MB</p>
-                            </div>
-                            <div class="flex items-center ml-auto">
-                                <button type="button" class="p-2 rounded hover:bg-gray-100">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path clip-rule="evenodd" fill-rule="evenodd"
-                                            d="M12 2.25a.75.75 0 01.75.75v11.69l3.22-3.22a.75.75 0 111.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.22 3.22V3a.75.75 0 01.75-.75zm-9 13.5a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z">
-                                        </path>
-                                    </svg>
-                                    <span class="sr-only">Download</span>
-                                </button>
-                                <button type="button" class="p-2 rounded hover:bg-gray-100">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
-                                    </svg>
-                                    <span class="sr-only">Actions</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="pl-12 mb-5">
-                    <footer class="flex items-center justify-between mb-2">
-                        <div class="flex items-center">
-                            <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img class="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"alt="Joseph avatar">Joseph McFallen</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
-                        </div>
-                        <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
-                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                            </svg>
-                            <span class="sr-only">Comment settings</span>
-                        </button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownComment4" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </footer>
-                    <p class="mb-2 text-gray-900 dark:text-white">
-                        Hello <a href="#" class="font-medium hover:underline text-primary-600 dark:text-primary-500">@jeseleos</a> I need some informations about flowbite react version.
-                    </p>
-                </article>
-                <article class="pl-12 mb-5">
-                    <footer class="flex items-center justify-between mb-2">
-                        <div class="flex items-center">
-                            <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img class="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"alt="Jese avatar">Jese Leos</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
-                        </div>
-                        <button id="dropdownComment5Button" data-dropdown-toggle="dropdownComment5"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
-                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                            </svg>
-                            <span class="sr-only">Comment settings</span>
-                        </button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownComment5" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </footer>
-                    <p class="mb-4 text-gray-900 dark:text-white">
-                        Hi <a href="#" class="font-medium hover:underline text-primary-600 dark:text-primary-500">@josephh</a> Sure, just let me know whean you are available and we can speak.
-                    </p>
-                    <form>
-                        <label for="chat" class="sr-only">Your message</label>
-                        <div class="flex items-center mb-5">
-                            <textarea id="chat" rows="1"
-                                class="block mr-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Reply in thread..."></textarea>
-                            <button type="submit" class="inline-flex justify-center p-2 rounded-lg cursor-pointer text-primary-600 hover:bg-primary-100 dark:text-primary-500 dark:hover:bg-gray-600">
-                                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                                </svg>
-                                <span class="sr-only">Send message</span>
-                            </button>
-                        </div>
-                    </form>
-                    <span class="inline-flex items-center text-xs font-medium cursor-pointer hover:underline text-primary-700 sm:text-sm dark:text-primary-500">
-                        Hide thread
-                        <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"></path>
-                        </svg>
-                    </span>
-                </article>
-                <div class="w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+
+                {{-- <div class="w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                     <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                         <label for="comment" class="sr-only">Write your message</label>
                         <textarea id="comment" rows="8" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write your message" required></textarea>
@@ -353,11 +172,19 @@
                             </button>
                         </div>
                     </div>
+                </div> --}}
+                <x-tinymce-editor />
+                <div class="relative pt-12">
+
+                    <button type="submit" class="absolute bottom-0 right-0 inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                        {{ __('Send answer') }}
+                    </button>
                 </div>
+
             </form>
         </div>
         <!--Info  -->
-        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+        <div class="p-4 bg-gray-50 border border-gray-200 h-fit rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div id="carousel" class="relative" data-carousel="">
                 <div class="relative mx-auto overflow-hidden ">
                     <div class=" items-center pb-8">
@@ -379,7 +206,7 @@
                             @php
                                 $c = explode('-', $tag->color)[1] < 400;
                             @endphp
-                            <a href="#" class="inline-flex border border-gray-400 shadow-sm items-center px-2 py-1 m-1 text-xs font-medium {{ $c ? 'text-gray-700' : 'text-white' }}  rounded-full bg-{{ $tag->color }}">{{ $tag->name }}</a>
+                            <a href="#" class="inline-flex border border-gray-200 shadow-sm items-center px-2 py-1 m-1 text-xs font-medium {{ $c ? 'text-gray-700' : 'text-white' }}  rounded-full bg-{{ $tag->color }}">{{ $tag->name }}</a>
                         @endforeach
                     </div>
                     <div class="pb-3">
@@ -394,4 +221,5 @@
 
     </div>
 
+    <x-head.tinymce-config />
 </x-home-layout>
