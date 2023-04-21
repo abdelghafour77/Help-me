@@ -24,7 +24,7 @@
 
 <body>
     <header class="fixed w-full z-10">
-        <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
+        <nav class="bg-gray-100 border-gray-200 py-2.5 dark:bg-gray-900">
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                 <a href="/" class="flex items-center">
                     <img src="{{ asset('assets/landing-page/logo.svg') }}" class="h-6 mr-3 sm:h-9" alt="Landwind Logo" />
