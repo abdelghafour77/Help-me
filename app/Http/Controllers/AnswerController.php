@@ -29,7 +29,11 @@ class AnswerController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        //
+        // validate and create answer
+        $answer = $request->validated();
+        $answer['user_id'] = auth()->id();
+        Answer::create($answer);
+        return back()->with('success', 'Answer created successfully!');
     }
 
     /**

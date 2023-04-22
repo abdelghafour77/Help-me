@@ -5,6 +5,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
@@ -75,6 +76,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/askQuestion', [QuestionController::class, 'create']);
     Route::post('/askQuestion', [QuestionController::class, 'store']);
     Route::get('/question/{id}', [QuestionController::class, 'show']);
+
+    // Answer
+    Route::post('/answer', [AnswerController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';
