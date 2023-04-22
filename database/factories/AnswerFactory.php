@@ -17,7 +17,7 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            'answer' => $this->faker->paragraph,
+            'description' => $this->faker->paragraph,
             'question_id' => \App\Models\Question::inRandomOrder()->first()->id,
             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
             'is_best' => false,
