@@ -17,7 +17,7 @@ class Answer extends Model
     // relationship with vote
     public function votes()
     {
-        return $this->morphToMany(User::class, 'votable');
+        return $this->hasMany(Vote::class);
     }
     // relationship with user
     public function user()

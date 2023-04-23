@@ -5,6 +5,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VoteController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
@@ -79,6 +80,9 @@ Route::middleware('auth')->group(function () {
 
     // Answer
     Route::post('/answer', [AnswerController::class, 'store']);
+
+    // like
+    Route::post('/vote', [VoteController::class, 'vote']);
 });
 
 require __DIR__ . '/auth.php';

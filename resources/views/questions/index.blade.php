@@ -46,21 +46,26 @@
                 <div>
                     @foreach ($question->answers as $answer)
                         <article class="grid grid-cols-12 my-8">
-                            <div class="col-span-1 flex flex-col justify-center items-center mb-2 space-y-2">
-                                <button type="button" class="py-1.5 px-3 inline-flex items-center rounded-lg bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 dark:bg-gray-700">
+                            <div class="col-span-2 md:col-span-1 flex flex-col justify-center items-center mb-2 space-y-2">
+                                <button type="button" onclick="vote('{{ $answer->id }}','1')" class="py-1.5 px-3 inline-flex items-center rounded-lg bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 dark:bg-gray-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                                     </svg>
-                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">3</span>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                        {{-- number of is_upvote=1 --}}
+                                        {{ $answer->votes->where('is_upvote', 1)->count() }}
+                                    </span>
                                 </button>
-                                <button type="button" class="py-1.5 px-3 inline-flex items-center rounded-lg bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 dark:bg-gray-700">
+                                <button type="button" onclick="vote('{{ $answer->id }}','0')" class="py-1.5 px-3 inline-flex items-center rounded-lg bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 dark:bg-gray-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
                                     </svg>
-                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8</span>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                        {{ $answer->votes->where('is_upvote', 0)->count() }}
+                                    </span>
                                 </button>
                             </div>
-                            <div class="col-span-11">
+                            <div class="colspan-10 md:col-span-11">
                                 <footer class="flex items-center justify-between mb-2">
                                     <div class="flex items-center">
                                         <p class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
@@ -170,4 +175,29 @@
     </div>
 
     <x-head.tinymce-config />
+    <script>
+        function vote(id, type) {
+            $.ajax({
+                url: '/vote',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    answer_id: id,
+                    is_upvote: type
+                },
+                success: function(data) {
+                    // if (data.status == 'success') {
+                    //     if (type == 'question') {
+                    //         $('#like-question').html(data.like);
+                    //         $('#dislike-question').html(data.dislike);
+                    //     } else {
+                    //         $('#like-answer-' + id).html(data.like);
+                    //         $('#dislike-answer-' + id).html(data.dislike);
+                    //     }
+                    // }
+                    console.log(data);
+                }
+            });
+        }
+    </script>
 </x-home-layout>
