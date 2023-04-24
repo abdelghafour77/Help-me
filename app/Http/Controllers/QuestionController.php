@@ -14,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $question = Question::find(16);
+        $question = Question::with('answers')->find(1);
         return view('questions.index', compact('question'));
     }
 

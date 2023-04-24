@@ -21,38 +21,28 @@ class VoteController extends Controller
     // create function to store vote in database that will be called from ajax using method post
     public function vote(Request $request)
     {
-        // dd($request->all());
-        // check if user is logged in
-        if (auth()->check()) {
-            // check if user has already voted
-            $vote = Vote::where('user_id', auth()->user()->id)->where('answer_id', $request->answer_id)->first();
-            // if user has not voted
-            if (!$vote) {
-                // create new vote
-                Vote::create([
-                    'user_id' => auth()->user()->id,
-                    'answer_id' => $request->answer_id,
-                    'is_upvote' => $request->is_upvote
-                ]);
-            } else {
-                // if user has already voted, update vote
+        $user_id = auth()->user()->id;
+        if ($request->is_upvote == -1) {
+            Vote::where('user_id', $user_id)->where('answer_id', $request->answer_id)->delete();
+            Answer::where('id', $request->answer_id)->decrement('votes_count');
+        } else {
+            $vote = Vote::where('user_id', $user_id)->where('answer_id', $request->answer_id)->first();
+            if ($vote) {
                 $vote->update([
                     'is_upvote' => $request->is_upvote
                 ]);
+            } else {
+                Vote::create([
+                    'user_id' => $user_id,
+                    'answer_id' => $request->answer_id,
+                    'is_upvote' => $request->is_upvote,
+                ]);
             }
-            // get answer
-            $answer = Answer::find($request->answer_id);
-            // return json response
-            return response()->json([
-                'message' => 'success',
-                'votesCount' => $answer->votes()->sum('is_upvote')
-            ]);
-        } else {
-            // if user is not logged in, return json response
-            return response()->json([
-                'message' => 'Unauthenticated.'
-            ]);
         }
+        return response()->json([
+            'success' => 'Vote successfully'
+
+        ]);
     }
 
     /**
