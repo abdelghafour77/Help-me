@@ -14,7 +14,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $question = Question::with('answers')->find(1);
+        $question = Question::with('answers')->findOrFail(1);
+        dd($question);
         return view('questions.index', compact('question'));
     }
 
@@ -50,7 +51,7 @@ class QuestionController extends Controller
      */
     public function show(String $id)
     {
-        $question = Question::find($id);
+        $question = Question::findOrFail($id);
         return view('questions.index', compact('question'));
     }
 
@@ -73,8 +74,11 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Question $question)
+    public function destroy(string $id)
     {
-        //
+
+        $question = Question::find($id);
+        $question->delete();
+        return redirect()->back()->with('success', 'Question deleted successfully');
     }
 }

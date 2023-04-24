@@ -9,7 +9,7 @@
                 </a>
             </div> --}}
             <!-- Chat -->
-            <form class="overflow-y-auto p-2">
+            <section class="overflow-y-auto p-2">
                 <article class="mb-5">
                     <footer class="flex items-center justify-between mb-7">
                         <H2 class="text-3xl font-bold text-gray-900 dark:text-gray-200">{{ $question->title }}</H2>
@@ -24,19 +24,20 @@
                         <!-- Dropdown menu -->
                         <div id="dropdownQuestion" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                @if ($question->user_id == Auth::id())
-                                    <li>
-                                        <a href="question/{{ $question->id }}/edit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                    </li>
-                                    <li>
-                                        <form action="question/{{ $question->id }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <a href="#" onclick="this.closest('form').submit()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                                        </form>
-                                    </li>
-                                @endif
+                                @auth
+                                    @if ($question->user_id == Auth::id())
+                                        <li>
+                                            <a href="question/{{ $question->id }}/edit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                        </li>
+                                        <li>
+                                            <form action="/question/{{ $question->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="javascript:;" onclick="this.closest('form').submit()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                                            </form>
+                                        </li>
+                                    @endif
+                                @endauth
 
                                 <li>
                                     <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
@@ -58,42 +59,44 @@
                     @foreach ($question->answers->sortByDesc(function ($answer) {
         return $answer->votes->where('is_upvote', 1)->count();
     }) as $answer)
-                        @php
-                            if ($answer->votes->where('user_id', Auth::id())->first()) {
-                                if ($answer->votes->where('user_id', Auth::id())->first()->is_upvote == 1) {
-                                    $up_class = 'bg-gray-200 dark:bg-gray-500';
-                                    $down_class = 'bg-gray-100 dark:bg-gray-700';
-                                    $up = 1;
-                                    $down = 0;
-                                } elseif ($answer->votes->where('user_id', Auth::id())->first()->is_upvote == 0) {
-                                    $down_class = 'bg-gray-200 dark:bg-gray-500';
+                        @auth
+                            @php
+                                if ($answer->votes->where('user_id', Auth::id())->first()) {
+                                    if ($answer->votes->where('user_id', Auth::id())->first()->is_upvote == 1) {
+                                        $up_class = 'bg-gray-200 dark:bg-gray-500 text-primary-700';
+                                        $down_class = 'bg-gray-100 dark:bg-gray-700';
+                                        $up = 1;
+                                        $down = 0;
+                                    } elseif ($answer->votes->where('user_id', Auth::id())->first()->is_upvote == 0) {
+                                        $down_class = 'bg-gray-200 dark:bg-gray-500 text-primary-700';
+                                        $up_class = 'bg-gray-100 dark:bg-gray-700';
+                                        $up = 0;
+                                        $down = 1;
+                                    }
+                                } else {
                                     $up_class = 'bg-gray-100 dark:bg-gray-700';
+                                    $down_class = 'bg-gray-100 dark:bg-gray-700 ';
                                     $up = 0;
-                                    $down = 1;
+                                    $down = 0;
                                 }
-                            } else {
-                                $up_class = 'bg-gray-100 dark:bg-gray-700';
-                                $down_class = 'bg-gray-100 dark:bg-gray-700';
-                                $up = 0;
-                                $down = 0;
-                            }
-                        @endphp
+                            @endphp
+                        @endauth
                         <article class="grid grid-cols-12 my-8">
                             <div class="col-span-3 md:col-span-1 flex flex-col justify-center items-center mb-2 space-y-2">
-                                <button type="button" onclick="vote('{{ $answer->id }}','{{ $up == 1 ? '-1' : 1 }}')" class="{{ $up_class }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
+                                <button id="btn-upvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $up ?? '1' == 1 ? '-1' : 1 }}')" class="{{ $up_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                                     </svg>
-                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        {{-- number of is_upvote=1 --}}
+                                    <span id="upvote-{{ $answer->id }}" class="text-sm font-medium text-gray-500 dark:text-gray-400">
                                         {{ $answer->votes->where('is_upvote', 1)->count() }}
                                     </span>
                                 </button>
-                                <button type="button" onclick="vote('{{ $answer->id }}','{{ $down == 1 ? '-1' : 0 }}')" class="{{ $down_class }} py-1.5 px-3 inline-flex items-center rounded-lg bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 dark:bg-gray-700">
+                                <button id="btn-downvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $down ?? '0' == 1 ? '-1' : 0 }}')"
+                                    class="{{ $down_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-600 dark:bg-gray-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
                                     </svg>
-                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    <span id="downvote-{{ $answer->id }}" class="text-sm font-medium text-gray-500 dark:text-gray-400">
                                         {{ $answer->votes->where('is_upvote', 0)->count() }}
                                     </span>
                                 </button>
@@ -122,18 +125,22 @@
                                     <!-- Dropdown menu -->
                                     <div id="dropdownComment-{{ $loop->index }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                            @if (auth()->user()->id == $answer->user->id)
-                                                <li>
-                                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                                </li>
-                                                <li>
-                                                    <form action="/answer/{{ $answer->id }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="javascript:;" onclick="this.closest('form').submit()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
-                                                    </form>
-                                                </li>
-                                            @endif
+                                            @auth
+
+
+                                                @if (auth()->user()->id == $answer->user->id)
+                                                    <li>
+                                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <form action="/answer/{{ $answer->id }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href="javascript:;" onclick="this.closest('form').submit()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                                                        </form>
+                                                    </li>
+                                                @endif
+                                            @endauth
                                             <li>
                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
                                             </li>
@@ -151,7 +158,7 @@
                         </article>
                     @endforeach
                 </div>
-            </form>
+            </section>
         </div>
         <div class="p-4 mb-4 col-span-2 bg-gray-50 border border-gray-200 rounded-lg shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800 xl:mb-0">
             <h1 class="mb-4 font-black text-2xl text-gray-900 dark:text-gray-200">{{ __('Your Answer') }}:</h1>
@@ -223,17 +230,38 @@
                     is_upvote: type
                 },
                 success: function(data) {
-                    // if (data.status == 'success') {
-                    //     if (type == 'question') {
-                    //         $('#like-question').html(data.like);
-                    //         $('#dislike-question').html(data.dislike);
-                    //     } else {
-                    //         $('#like-answer-' + id).html(data.like);
-                    //         $('#dislike-answer-' + id).html(data.dislike);
-                    //     }
-                    // }
+                    console.log(data);
+                    if (data.status == 'success') {
+                        $('#upvote-' + id).html(data.upvote);
+                        $('#downvote-' + id).html(data.downvote);
+                        if (data.type == 'up') {
+                            $('#btn-upvote-' + id).addClass('text-primary-700');
+                            $('#btn-downvote-' + id).removeClass('text-primary-700');
+                            // change parametre of onclick function
+                            $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
+                            $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
+
+                        } else if (data.type == 'down') {
+                            $('#btn-downvote-' + id).addClass('text-primary-700');
+                            $('#btn-upvote-' + id).removeClass('text-primary-700');
+                            // change parametre of onclick function
+                            $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
+                            $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
+
+                        } else {
+                            $('#btn-upvote-' + id).removeClass('text-primary-700');
+                            $('#btn-downvote-' + id).removeClass('text-primary-700');
+                            // change parametre of onclick function
+                            $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 1 + ')');
+                            $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
+                        }
+                    }
+                },
+                error: function(data) {
                     console.log(data);
                 }
+
+
             });
         }
     </script>
