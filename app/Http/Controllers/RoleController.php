@@ -36,7 +36,9 @@ class RoleController extends Controller
         // assign permission to role
         $role->syncPermissions($request->permissions);
         // dd($role->permissions);
-        return redirect()->back()->with('success', 'Role created successfully');
+        session()->flash('message', 'Role created successfully');
+        session()->flash('icon', 'success');
+        return redirect()->back();
     }
 
     // update role
@@ -51,7 +53,9 @@ class RoleController extends Controller
         // assign permission to role
         $role->syncPermissions($request->permissions);
         // dd($role->permissions);
-        return redirect()->back()->with('success', 'Role updated successfully');
+        session()->flash('message', 'Role updated successfully');
+        session()->flash('icon', 'success');
+        return redirect()->back();
     }
 
     // delete role
@@ -59,6 +63,8 @@ class RoleController extends Controller
     {
         $role = Role::findById($id);
         $role->delete();
-        return redirect()->back()->with('success', 'Role deleted successfully');
+        session()->flash('message', 'Role deleted successfully');
+        session()->flash('icon', 'success');
+        return redirect()->back();
     }
 }

@@ -79,7 +79,10 @@ class UserController extends Controller
         // update user
 
         // return view flash success message
-        return redirect()->back()->with('success', 'User updated successfully');
+        session()->flash('message', 'User updated successfully');
+        session()->flash('icon', 'success');
+
+        return redirect()->back();
     }
 
     /**
@@ -93,7 +96,10 @@ class UserController extends Controller
         $user->removeRole($user->roles->first()->name);
         // delete user
         $user->delete();
-        // return view flash success message
-        return redirect()->back()->with('success', 'User deleted successfully');
+
+        session()->flash('message', 'User deleted successfully');
+        session()->flash('icon', 'success');
+
+        return redirect()->back();
     }
 }

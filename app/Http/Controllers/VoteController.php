@@ -49,22 +49,22 @@ class VoteController extends Controller
                     $type = ($request->is_upvote == 1) ? 'up' : 'down';
                 }
                 return response()->json([
-                    'success' => 'Vote successfully',
-                    'status' => 'success',
+                    'message' => 'Vote successfully',
+                    'icon' => 'success',
                     'type' => $type,
                     'upvote' => Vote::where('answer_id', $request->answer_id)->where('is_upvote', 1)->count(),
                     'downvote' => Vote::where('answer_id', $request->answer_id)->where('is_upvote', 0)->count(),
                 ], 200);
             } else {
                 return response()->json([
-                    'success' => 'You do not have permission to vote',
-                    'status' => 'error',
+                    'message' => 'You do not have permission to vote',
+                    'icon' => 'error',
                 ], 401);
             }
         } else {
             return response()->json([
-                'success' => 'You must login to vote',
-                'status' => 'error',
+                'message' => 'You must login to vote',
+                'icon' => 'error',
             ], 401);
         }
     }

@@ -33,6 +33,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete answers']);
 
         // Votes Permissions
+        Permission::create(['name' => 'vote']);
         Permission::create(['name' => 'view votes']);
         Permission::create(['name' => 'up votes']);
         Permission::create(['name' => 'down votes']);
@@ -87,6 +88,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'create answers',
             'edit answers',
             'delete answers',
+            'vote',
             'view votes',
             'up votes',
             'down votes',
@@ -108,6 +110,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'create answers',
             'edit answers',
             'delete answers',
+            'vote',
             'view votes',
             'up votes',
             'down votes',

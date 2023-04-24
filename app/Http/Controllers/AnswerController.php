@@ -33,7 +33,11 @@ class AnswerController extends Controller
         $answer = $request->validated();
         $answer['user_id'] = auth()->id();
         Answer::create($answer);
-        return back()->with('success', 'Answer created successfully!');
+        // session message icon and title
+        session()->flash('message', 'Answer created successfully');
+        session()->flash('icon', 'success');
+
+        return back();
     }
 
     /**
@@ -63,8 +67,23 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Answer $answer)
+    public function destroy(string $id)
     {
-        //
+        // find answer
+        $answer = Answer::findOrFail($id);
+        // check if user is authorized
+        if ($answer->user_id == auth()->id()) {
+            // delete answer
+            $answer->delete();
+            // session message icon and title
+            session()->flash('message', 'Answer deleted successfully');
+            session()->flash('icon', 'success');
+        } else {
+            // session message icon and title
+            session()->flash('message', 'You do not have permission to delete this answer');
+            session()->flash('icon', 'error');
+        }
+
+        return back();
     }
 }

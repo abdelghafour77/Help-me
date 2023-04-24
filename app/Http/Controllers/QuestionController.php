@@ -43,7 +43,9 @@ class QuestionController extends Controller
         $tags = collect($tags);
         $tags = $tags->pluck('id')->toArray();
         $question->tags()->attach($tags);
-        return redirect()->back()->with('success', 'Question created successfully');
+        session()->flash('success', 'Question created successfully');
+        session()->flash('icon', 'success');
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +81,8 @@ class QuestionController extends Controller
 
         $question = Question::find($id);
         $question->delete();
-        return redirect()->back()->with('success', 'Question deleted successfully');
+        session()->flash('success', 'Question deleted successfully');
+        session()->flash('icon', 'success');
+        return redirect()->back();
     }
 }

@@ -230,35 +230,33 @@
                     is_upvote: type
                 },
                 success: function(data) {
-                    console.log(data);
-                    if (data.status == 'success') {
-                        $('#upvote-' + id).html(data.upvote);
-                        $('#downvote-' + id).html(data.downvote);
-                        if (data.type == 'up') {
-                            $('#btn-upvote-' + id).addClass('text-primary-700');
-                            $('#btn-downvote-' + id).removeClass('text-primary-700');
-                            // change parametre of onclick function
-                            $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
-                            $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
 
-                        } else if (data.type == 'down') {
-                            $('#btn-downvote-' + id).addClass('text-primary-700');
-                            $('#btn-upvote-' + id).removeClass('text-primary-700');
-                            // change parametre of onclick function
-                            $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
-                            $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
+                    $('#upvote-' + id).html(data.upvote);
+                    $('#downvote-' + id).html(data.downvote);
+                    if (data.type == 'up') {
+                        $('#btn-upvote-' + id).addClass('text-primary-700');
+                        $('#btn-downvote-' + id).removeClass('text-primary-700');
+                        // change parametre of onclick function
+                        $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
+                        $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
 
-                        } else {
-                            $('#btn-upvote-' + id).removeClass('text-primary-700');
-                            $('#btn-downvote-' + id).removeClass('text-primary-700');
-                            // change parametre of onclick function
-                            $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 1 + ')');
-                            $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
-                        }
+                    } else if (data.type == 'down') {
+                        $('#btn-downvote-' + id).addClass('text-primary-700');
+                        $('#btn-upvote-' + id).removeClass('text-primary-700');
+                        // change parametre of onclick function
+                        $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
+                        $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
+
+                    } else {
+                        $('#btn-upvote-' + id).removeClass('text-primary-700');
+                        $('#btn-downvote-' + id).removeClass('text-primary-700');
+                        // change parametre of onclick function
+                        $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 1 + ')');
+                        $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
                     }
                 },
                 error: function(data) {
-                    console.log(data);
+                    flashToast(data.responseJSON.icon, data.responseJSON.message);
                 }
 
 

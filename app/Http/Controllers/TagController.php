@@ -47,6 +47,9 @@ class TagController extends Controller
 
         $log->logMe("info", "Created tag ID: $ta->id", "POST", $request->ip());
 
+        session()->flash('message', 'Tag created successfully');
+        session()->flash('icon', 'success');
+
         return redirect()->back();
     }
 
@@ -90,7 +93,9 @@ class TagController extends Controller
         $log = new LogController();
         $log->logMe("info", "Updated tag ID: $ta->id", "PUT", $request->ip());
         // redirect to tag index
-        return redirect()->back()->with('success', 'Tag updated successfully');
+        session()->flash('message', 'Tag updated successfully');
+        session()->flash('icon', 'success');
+        return redirect()->back();
     }
 
     /**
@@ -104,7 +109,9 @@ class TagController extends Controller
         $log = new LogController();
 
         $log->logMe("warning", "Deleted tag ID: $tag->id", "DELETE", $request->ip());
+        session()->flash('message', 'Tag deleted successfully');
+        session()->flash('icon', 'success');
         // redirect to tag index
-        return redirect()->back()->with('success', 'Tag deleted successfully');
+        return redirect()->back();
     }
 }

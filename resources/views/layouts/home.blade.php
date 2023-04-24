@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <title>Landwind - Tailwind CSS Landing Page Demo</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script async>
         if (localStorage.getItem('color-theme') === 'dark') {
@@ -23,6 +23,7 @@
 </head>
 
 <body>
+    <x-flash />
     <header class="fixed w-full z-10">
         <nav class="bg-gray-100 border-gray-200 py-2.5 dark:bg-gray-900">
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
