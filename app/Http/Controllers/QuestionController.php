@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Question;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 
@@ -37,6 +38,8 @@ class QuestionController extends Controller
     {
         $request->all();
         $request->merge(['user_id' => auth()->user()->id]);
+        $request->merge(['slug' => Str::slug($request->input('title'))]);
+        // dd($request->all());
         $question = Question::create($request->all());
 
         $tags = json_decode($request->input('tags'));
@@ -51,9 +54,9 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(String $id)
+    public function show(String $slug)
     {
-        $question = Question::findOrFail($id);
+        $question = Question::where('slug', $slug)->firstOrFail();
         return view('questions.index', compact('question'));
     }
 

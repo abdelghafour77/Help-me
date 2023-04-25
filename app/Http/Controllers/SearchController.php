@@ -10,6 +10,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
+        // dd($search);
         $questions = Question::where('title', 'like', '%' . $search . '%')->paginate(5);
         return view('search', compact('questions'));
     }

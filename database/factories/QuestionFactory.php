@@ -18,6 +18,7 @@ class QuestionFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
+            'slug' => $this->faker->slug,
             'description' => $this->faker->text,
             'view_count' => rand(0, 1000),
             // 'answers_count' => rand(0, 10),

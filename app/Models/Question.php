@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'view_count', 'answer_count', 'user_id'];
+    protected $fillable = ['title', 'slug', 'description', 'view_count', 'answer_count', 'user_id'];
 
     // relationship with tag
     public function tags()
