@@ -57,7 +57,7 @@ class QuestionController extends Controller
     public function show(String $slug)
     {
         $question = Question::where('slug', $slug)->firstOrFail();
-        return view('questions.index', compact('question'));
+        return view('questions.show', compact('question'));
     }
 
     /**
