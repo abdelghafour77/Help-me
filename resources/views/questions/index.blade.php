@@ -51,12 +51,12 @@
                     </article>
 
                 </article>
-                <h1 class="font-black text-2xl text-gray-900 dark:text-gray-200">Answers:</h1>
+                <h1 class="font-black text-2xl text-gray-900 dark:text-gray-200">{{ __('Answers') }}:</h1>
                 <div>
-                    {{-- sort answers by votes is_upvote using withcount method --}}
 
 
-                    @foreach ($question->answers->sortByDesc(function ($answer) {
+
+                    @forelse ($question->answers->sortByDesc(function ($answer) {
         return $answer->votes->where('is_upvote', 1)->count();
     }) as $answer)
                         @auth
@@ -156,7 +156,9 @@
 
 
                         </article>
-                    @endforeach
+                    @empty
+                        <p class="text-center font-semibold text-2xl text-gray-900 dark:text-gray-200">{{ __('There is no answers yet !!') }}</p>
+                    @endforelse
                 </div>
             </section>
         </div>

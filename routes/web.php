@@ -72,17 +72,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/roles', [RoleController::class, 'store']);
     Route::put('/roles/{id}', [RoleController::class, 'update']);
     Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
-
-    // Question
-    Route::get('/askQuestion', [QuestionController::class, 'create']);
-    Route::post('/askQuestion', [QuestionController::class, 'store']);
-    Route::get('/question/{id}', [QuestionController::class, 'show']);
-
-    // Answer
-    Route::post('/answer', [AnswerController::class, 'store']);
-
-    // like
-    Route::post('/vote', [VoteController::class, 'vote']);
 });
+// Question
+Route::get('/askQuestion', [QuestionController::class, 'create']);
+Route::post('/askQuestion', [QuestionController::class, 'store']);
+Route::get('/question/{slug}', [QuestionController::class, 'show']);
+Route::delete('/question/{id}', [QuestionController::class, 'destroy']);
+Route::get('/question/{id}/edit', [QuestionController::class, 'edit']);
+// Route::put('/question/{id}', [QuestionController::class, 'update']);
+
+// Answer
+Route::post('/answer', [AnswerController::class, 'store']);
+Route::delete('/answer/{id}', [AnswerController::class, 'destroy']);
+
+// like
+Route::post('/vote', [VoteController::class, 'vote']);
+
 
 require __DIR__ . '/auth.php';
