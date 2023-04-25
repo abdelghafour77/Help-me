@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/tag/{id}', [TagController::class, 'edit']);
     Route::delete('/tags/{tag}', [TagController::class, 'destroy']);
     Route::get('/tags', [TagController::class, 'index']);
+    Route::get('/tag/{slug}', [TagController::class, 'getTagQuestions']);
     Route::post('/tags', [TagController::class, 'store']);
     Route::put('/tags/{tag}', [TagController::class, 'update']);
     Route::get('/admin/tags', [TagController::class, 'allTags']);

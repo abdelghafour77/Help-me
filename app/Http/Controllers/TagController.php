@@ -32,6 +32,14 @@ class TagController extends Controller
         //
     }
 
+    // get all question that have this tag slug
+    public function getTagQuestions(string $slug)
+    {
+        $tag = Tag::where('slug', $slug)->first();
+        $questions = $tag->questions()->paginate(10);
+        return view('tag', compact('tag', 'questions'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
