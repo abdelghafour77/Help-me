@@ -79,7 +79,7 @@
                                 }
                             @endphp
                         @endauth
-                        <article class="grid grid-cols-12 my-8">
+                        <article class="grid grid-cols-12 my-8" id="answer-{{ $answer->id }}">
                             <div class="col-span-3 md:col-span-1 flex flex-col justify-center items-center mb-2 space-y-2">
                                 <button id="btn-upvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $up ?? '1' == 1 ? '-1' : 1 }}')" class="{{ $up_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -158,7 +158,7 @@
             <h1 class="mb-4 font-black text-2xl text-gray-900 dark:text-gray-200">{{ __('Your Answer') }}:</h1>
             <form action="/answer" method="POST">
                 @csrf
-                <input type="hidden" name="question_id" value="{{ $question->id }}">
+                <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
                 <x-tinymce-editor />
                 {{-- error --}}
                 @error('desciption')
@@ -312,6 +312,7 @@
                     question_id: question_id,
                     reportable_type: reportable_type,
                     reportable_id: reportable_id,
+
                 },
                 success: function(data) {
                     flashToast(data.icon, data.message);

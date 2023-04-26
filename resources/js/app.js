@@ -6,7 +6,7 @@ import './sidebar';
 import './charts';
 import './dark-mode';
 import './tagify-config';
-import Datepicker from 'flowbite-datepicker/Datepicker';
+import 'jquery';
 
 import Alpine from 'alpinejs';
 import slug from 'alpinejs-slug'

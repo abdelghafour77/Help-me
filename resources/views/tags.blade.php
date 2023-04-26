@@ -1,12 +1,6 @@
 <x-dashboard-layout>
     <x-dashboard.colors />
-    {{-- @php
-        $numbers = [100, 200, 300, 400, 500, 600, 700, 800, 900];
-    @endphp
-    @foreach ($numbers as $number)
-        <span class="hidden bg-green-{{ $number }}"></span>
-    @endforeach --}}
-    <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+    <div class="m-4 my-6 p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         <!-- Card header -->
         <div class="items-center justify-between lg:flex">
             <div class="mb-4 lg:mb-0">
@@ -197,10 +191,6 @@
 
         </form>
     </div>
-
-    {{-- include jquery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {{-- include bootstrap --}}
     <script>
         // get user using ajax
         function editetag(id) {
