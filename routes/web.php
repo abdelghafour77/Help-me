@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
 
     // Report
     Route::post('/report', [ReportController::class, 'store']);
+    Route::get('/reports', [ReportController::class, 'index']);
+    Route::get('/admin/reports/{id}', [ReportController::class, 'edit']);
 });
 // Question
 Route::get('/questions', [QuestionController::class, 'index']);

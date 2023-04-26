@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Termwind\Components\Dd;
 
 class ReportController extends Controller
 {
@@ -13,7 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::get();
+        // dd($reports);
+        return view('reports', compact('reports'));
     }
 
     /**
@@ -79,7 +82,15 @@ class ReportController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $report = Report::with('reportType', 'user')->findOrFail($id);
+        // role of the user that created the report
+        $report->user->role = $report->user->roles()->first()->name;
+        // return json response
+        return response()->json([
+            'message' => 'Report fetched successfully',
+            'icon' => 'success',
+            'data' => $report,
+        ]);
     }
 
     /**
