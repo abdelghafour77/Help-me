@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
@@ -73,6 +74,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/roles', [RoleController::class, 'store']);
     Route::put('/roles/{id}', [RoleController::class, 'update']);
     Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
+
+    // Report
+    Route::post('/report', [ReportController::class, 'store']);
 });
 // Question
 Route::get('/questions', [QuestionController::class, 'index']);
