@@ -11,7 +11,7 @@ class SearchController extends Controller
     {
         $search = $request->get('search');
         // dd($search);
-        $questions = Question::where('title', 'like', '%' . $search . '%')->paginate(5);
+        $questions = Question::where('title', 'like', '%' . $search . '%')->paginate(8);
         return view('search', compact('questions'));
     }
 }

@@ -15,9 +15,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $question = Question::with('answers')->findOrFail(1);
-        dd($question);
-        return view('questions.index', compact('question'));
+        $questions = Question::with('user')->latest()->paginate(8);
+        // dd($questions);
+        return view('questions.index', compact('questions'));
     }
 
     /**

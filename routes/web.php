@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
 });
 // Question
+Route::get('/questions', [QuestionController::class, 'index']);
 Route::get('/askQuestion', [QuestionController::class, 'create']);
 Route::post('/askQuestion', [QuestionController::class, 'store']);
 Route::get('/question/{slug}', [QuestionController::class, 'show']);

@@ -17,7 +17,6 @@
 
             <div class="pt-5 flex justify-between wrapper items-center">
                 <div class="px-3">
-                    <div class="lg:text-2xl md:text-xl text-lg lg:pt-3 p-1 font-black text-gray-300">Search Results </div>
                     <div class="lg:text-lg md:text-lg text-sm lg:pt-1 p-1 font-black text-gray-500">
                         {{ $questions->total() }} results
                     </div>
@@ -84,6 +83,7 @@
             </ul>
             {{ $questions->links() }}
         </div>
+
 
     </div>
 </x-home-layout>
