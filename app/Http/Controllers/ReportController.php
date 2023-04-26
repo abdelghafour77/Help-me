@@ -32,12 +32,15 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'reportable_type' => 'required|string',
             'reportable_id' => 'required|integer',
             'report_type_id' => 'required|integer|exists:report_types,id',
             'description' => 'nullable|string',
+            'question_id' => 'nullable|integer|exists:questions,id',
+
         ]);
 
         // If validation fails, return a JSON response with errors
@@ -53,9 +56,16 @@ class ReportController extends Controller
         $report = new Report([
             'reportable_type' => $request->input('reportable_type'),
             'reportable_id' => $request->input('reportable_id'),
-            'user_id' => auth()->id(),
+            'question_id' => $request->input('question_id'),
+            'reported_at' => now(),
+            'is_resolved' => false,
+            'resolved_at' => null,
+            'resolved_by' => null,
+            'resolution' => null,
             'report_type_id' => $request->input('report_type_id'),
             'description' => $request->input('description'),
+            'user_id' => auth()->id(),
+
         ]);
 
         // Save the report to the database
@@ -82,9 +92,10 @@ class ReportController extends Controller
      */
     public function edit(string $id)
     {
-        $report = Report::with('reportType', 'user')->findOrFail($id);
+        $report = Report::with('reportType', 'user', 'question')->findOrFail($id);
         // role of the user that created the report
         $report->user->role = $report->user->roles()->first()->name;
+
         // return json response
         return response()->json([
             'message' => 'Report fetched successfully',

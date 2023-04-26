@@ -17,6 +17,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // user who reported the content
             $table->foreignId('report_type_id')->constrained()->onDelete('cascade'); // type of report
             $table->text('description')->nullable(); // description of the report
+            $table->boolean('is_resolved')->default(false); // whether the report has been resolved
+            $table->foreignId('resolved_by')->nullable()->constrained('users')->onDelete('cascade'); // user who resolved the report
+            $table->text('resolution')->nullable(); // resolution of the report
+            $table->timestamp('resolved_at')->nullable(); // when the report was resolved
+            $table->timestamp('reported_at')->nullable(); // when the report was reported
+            $table->foreignId('question_id')->nullable()->constrained()->onDelete('cascade'); // question that was reported
             $table->timestamps();
         });
     }

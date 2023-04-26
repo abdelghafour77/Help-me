@@ -1,6 +1,6 @@
 <x-dashboard-layout>
 
-    <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+    <div class="m-4 my-6 p-4 bg-white border min-h-screen border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         <!-- Card header -->
         <div class="items-center justify-between lg:flex">
             <div class="mb-4 lg:mb-0">
@@ -102,7 +102,7 @@
                                     <th scope="col" width="%1" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         ID
                                     </th>
-                                    <th scope="col" width="%1" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                    <th scope="col" width="%1" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         Report Type
                                     </th>
                                     <th scope="col" width="%1" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
@@ -115,7 +115,7 @@
                                         User ID
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
-                                        User role
+                                        Status
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                         Created at
@@ -129,7 +129,7 @@
                             <tbody class="bg-white dark:bg-gray-800">
                                 @foreach ($reports as $report)
                                     <tr class="{{ $loop->even ? 'bg-gray-50 dark:bg-gray-700' : '' }}">
-                                        <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
+                                        <td class="p-4 text-sm text-center font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $report->id }}
                                         </td>
                                         <td class="flex justify-center p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
@@ -149,19 +149,26 @@
                                                 </span>
                                             @endif
                                         </td>
-                                        <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
+                                        <td class="p-4 text-sm text-center font-semibold text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $report->user->full_name }}
-
                                         </td>
 
                                         <td class=" text-center p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            <p class="truncate w-24 md:w-64">{{ $report->description ?? 'Without description' }}</p>
+                                            <p class="truncate max-w-24 md:max-w-64">{{ $report->description ?? 'Without description' }}</p>
                                         </td>
                                         <td class="text-center  p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                             {{ $report->user_id }}
                                         </td>
                                         <td class="text-center p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            {{ $report->user->roles->first()->name }}
+                                            @if ($report->is_resolved == 0)
+                                                <span class="bg-blue-100 text-orange-400 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-300 border border-orange-300">
+                                                    pending
+                                                </span>
+                                            @else
+                                                <span class="bg-blue-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
+                                                    resolved
+                                                </span>
+                                            @endif
                                         </td>
                                         <td class="p-4 whitespace-nowrap text-center">
                                             <span title="{{ $report->created_at }}" class="text-center px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -184,51 +191,7 @@
             </div>
         </div>
 
-        <!-- Card Footer -->
-        <div class="flex items-center justify-between pt-3 sm:pt-6">
-            <div>
-                <button class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" type="button" data-dropdown-toggle="transactions-dropdown">Last 7 days <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg></button>
-                <!-- Dropdown menu -->
-                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="transactions-dropdown">
-                    <div class="px-4 py-3" role="none">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white" role="none">
-                            Sep 16, 2021 - Sep 22, 2021
-                        </p>
-                    </div>
-                    <ul class="py-1" role="none">
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Yesterday</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Today</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Last 7 days</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Last 30 days</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Last 90 days</a>
-                        </li>
-                    </ul>
-                    <div class="py-1" role="none">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Custom...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-shrink-0">
-                <a href="#" class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
-                    Transactions Report
-                    <svg class="w-4 h-4 ml-1 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
+
     </div>
     {{-- drawer --}}
     <div id="drawer-report" aria-hidden="true" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
@@ -244,6 +207,8 @@
             <span class="" id="report_id"></span>
             <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Type: </h4>
             <span id="type"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Status: </h4>
+            <span id="status"></span>
             <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Report type: </h4>
             <span id="report_type"></span>
             <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Report type description: </h4>
@@ -258,15 +223,23 @@
             <span id="user_role"></span>
             <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> Date: </h4>
             <span id="date"></span>
+            <h4 class="text-4xl font-bold text-gray-400 sm:text-sm dark:text-gray-300"> URL: </h4>
+            <a id="url" href="" target="_blank" class="text-primary-700 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-400"> View </a>
             {{-- buttons --}}
-
+            <div class="flex gap-1">
+                <button id="btn-resolve" type="submit" onclick="changeFormAction('PUT')"
+                    class="text-white w-full justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    Resolve
+                </button>
+                <button id="btn-delete" type="submit" onclick="changeFormAction('DELETE')"
+                    class="text-white w-full justify-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                    Delete
+                </button>
+            </div>
 
         </div>
     </div>
 
-    {{-- include jquery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {{-- include bootstrap --}}
     <script>
         // get report using ajax
         function getreport(id) {
@@ -285,8 +258,18 @@
                     $('#user_full_name').html(data.responseJSON.data.user.full_name)
                     $('#user_role').html(data.responseJSON.data.user.role)
                     $('#date').html(data.responseJSON.data.created_at)
-
-
+                    $('#btn-resolve').html('Resolve ' + data.responseJSON.data.reportable_type);
+                    $('#btn-delete').html('Delete ' + data.responseJSON.data.reportable_type);
+                    if (data.responseJSON.data.reportable_type == 'answer') {
+                        $('#url').attr('href', '/question/' + data.responseJSON.data.question.slug + '#answer-' + data.responseJSON.data.reportable_id);
+                    } else if (data.responseJSON.data.reportable_type == 'question') {
+                        $('#url').attr('href', '/question/' + data.responseJSON.data.question.slug);
+                    }
+                    if (data.responseJSON.data.is_resolved == 0) {
+                        $('#status').html('<span class="bg-blue-100 text-orange-400 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-300 border border-orange-300">pending</span>');
+                    } else {
+                        $('#status').html('<span class="bg-blue-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">resolved</span>');
+                    }
                 }
             });
         }

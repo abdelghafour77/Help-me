@@ -14,6 +14,10 @@ class Report extends Model
         'user_id',
         'report_type_id',
         'description',
+        'is_resolved',
+        'resolved_by',
+        'question_id',
+        'reported_at',
     ];
 
     public function reportable()
@@ -29,5 +33,10 @@ class Report extends Model
     public function reportType()
     {
         return $this->belongsTo(ReportType::class);
+    }
+    // question
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
     }
 }

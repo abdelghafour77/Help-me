@@ -28,4 +28,9 @@ class Question extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // relationship with report
+    public function reports()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
 }
