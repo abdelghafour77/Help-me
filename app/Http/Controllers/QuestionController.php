@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Question;
+use App\Models\ReportType;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
@@ -57,7 +58,8 @@ class QuestionController extends Controller
     public function show(String $slug)
     {
         $question = Question::where('slug', $slug)->firstOrFail();
-        return view('questions.show', compact('question'));
+        $reportTypes = ReportType::all();
+        return view('questions.show', compact('question', 'reportTypes'));
     }
 
     /**
