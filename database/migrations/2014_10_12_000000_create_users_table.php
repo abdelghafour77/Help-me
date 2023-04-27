@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('avatar')->default('default.png');
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->integer('score')->default(0);
             $table->boolean('status')->default(1);
             $table->date('birthday')->nullable();
