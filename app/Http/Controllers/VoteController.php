@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vote;
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\LogController;
 use App\Http\Requests\StoreVoteRequest;
 use App\Http\Requests\UpdateVoteRequest;
 // use spatie permission
@@ -27,11 +28,13 @@ class VoteController extends Controller
         if (auth()->user()) {
             // if user has permission to vote
             if (auth()->user()->hasPermissionTo('vote')) {
-
+                $log = new LogController();
                 $user_id = auth()->user()->id;
                 if ($request->is_upvote == -1) {
-                    Vote::where('user_id', $user_id)->where('answer_id', $request->answer_id)->delete();
+                    $vote = Vote::where('user_id', $user_id)->where('answer_id', $request->answer_id)->delete();
                     $type = 'none';
+                    $log->logMe("info", "Delete vote ID: $vote->id", "POST", $request->ip());
+
                     // Answer::where('id', $request->answer_id)->decrement('votes_count');
                 } else {
                     $vote = Vote::where('user_id', $user_id)->where('answer_id', $request->answer_id)->first();
@@ -39,15 +42,18 @@ class VoteController extends Controller
                         $vote->update([
                             'is_upvote' => $request->is_upvote
                         ]);
+                        $log->logMe("info", "Updated vote ID: $vote->id", "POST", $request->ip());
                     } else {
-                        Vote::create([
+                        $vote = Vote::create([
                             'user_id' => $user_id,
                             'answer_id' => $request->answer_id,
                             'is_upvote' => $request->is_upvote,
                         ]);
+                        $log->logMe("info", "Created vote ID: $vote->id", "POST", $request->ip());
                     }
                     $type = ($request->is_upvote == 1) ? 'up' : 'down';
                 }
+
                 return response()->json([
                     'message' => 'Vote successfully',
                     'icon' => 'success',

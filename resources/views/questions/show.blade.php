@@ -14,7 +14,8 @@
                     <footer class="flex items-center justify-between mb-7">
                         <H2 class="text-3xl font-bold text-gray-900 dark:text-gray-200">{{ $question->title }}</H2>
                         <button id="dropdownQuestionButton" data-dropdown-toggle="dropdownQuestion"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
+                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600"
+                            type="button">
                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
                                 </path>
@@ -81,7 +82,8 @@
                         @endauth
                         <article class="grid grid-cols-12 my-8" id="answer-{{ $answer->id }}">
                             <div class="col-span-3 md:col-span-1 flex flex-col justify-center items-center mb-2 space-y-2">
-                                <button id="btn-upvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $up ?? '1' == 1 ? '-1' : 1 }}')" class="{{ $up_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
+                                <button id="btn-upvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $up ?? '1' == 1 ? '-1' : 1 }}')"
+                                    class="{{ $up_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                                     </svg>
@@ -113,7 +115,8 @@
                                         </p>
                                     </div>
                                     <button id="dropdownComment-{{ $loop->index }}-Button" data-dropdown-toggle="dropdownComment-{{ $loop->index }}"
-                                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
+                                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600"
+                                        type="button">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
                                             </path>
@@ -138,7 +141,8 @@
                                                 @endif
                                             @endauth
                                             <li>
-                                                <a href="#" onclick="changeModal('answer',{{ $answer->id }})" data-modal-target="report-modal" data-modal-toggle="report-modal" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                                <a href="#" onclick="changeModal('answer',{{ $answer->id }})" data-modal-target="report-modal" data-modal-toggle="report-modal"
+                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -238,10 +242,11 @@
                         <div>
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <textarea id="description" name="description" rows="3"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Description"></textarea>
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Description"></textarea>
                         </div>
                         <div>
-                            <button type="button" id="sendReportBtn" onclick="sendReport('answer', '{{ $answer->id }}')"
+                            <button type="button" id="sendReportBtn" onclick="sendReport('answer', '')"
                                 class="inline-flex justify-center items-center w-full px-4 py-2.5 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                 {{ __('Submit') }}
                             </button>

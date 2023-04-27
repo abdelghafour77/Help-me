@@ -24,6 +24,7 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
+    <x-flash />
     <nav class="fixed z-30 w-full ">
         <div class="flex items-center justify-end m-4">
             <x-darkmode-toggle />

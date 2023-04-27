@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Http\Controllers\LogController;
 use App\Http\Requests\StoreAnswerRequest;
 use App\Http\Requests\UpdateAnswerRequest;
 
@@ -29,15 +30,25 @@ class AnswerController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        // validate and create answer
-        $answer = $request->validated();
-        $answer['user_id'] = auth()->id();
-        Answer::create($answer);
-        // session message icon and title
-        session()->flash('message', 'Answer created successfully');
-        session()->flash('icon', 'success');
+        if (auth()->user()->hasPermissionTo('create answers')) {
+            // validate and create answer
+            $answer = $request->validated();
+            $answer['user_id'] = auth()->id();
+            $answer = Answer::create($answer);
+            // session message icon and title
+            session()->flash('message', 'Answer created successfully');
+            session()->flash('icon', 'success');
+            $log = new LogController();
+            $log->logMe("info", "Created answer ID: $answer->id", "POST", $request->ip());
 
-        return back();
+
+            return back();
+        } else {
+            // session message icon and title
+            session()->flash('message', 'You do not have permission to create an answer');
+            session()->flash('icon', 'error');
+            return back();
+        }
     }
 
     /**
@@ -69,21 +80,32 @@ class AnswerController extends Controller
      */
     public function destroy(string $id)
     {
-        // find answer
-        $answer = Answer::findOrFail($id);
-        // check if user is authorized
-        if ($answer->user_id == auth()->id()) {
-            // delete answer
-            $answer->delete();
-            // session message icon and title
-            session()->flash('message', 'Answer deleted successfully');
-            session()->flash('icon', 'success');
+        if (auth()->user()->hasPermissionTo('delete answers')) {
+
+
+            // find answer
+            $answer = Answer::findOrFail($id);
+            // check if user is authorized
+            if ($answer->user_id == auth()->id()) {
+                // delete answer
+                $answer->delete();
+                // session message icon and title
+                session()->flash('message', 'Answer deleted successfully');
+                session()->flash('icon', 'success');
+            } else {
+                // session message icon and title
+                session()->flash('message', 'You do not have permission to delete this answer');
+                session()->flash('icon', 'error');
+            }
+            $log = new LogController();
+            $log->logMe("info", "Deleted answer ID: $answer->id", "DELETE", request()->ip());
+
+            return back();
         } else {
             // session message icon and title
-            session()->flash('message', 'You do not have permission to delete this answer');
+            session()->flash('message', 'You do not have permission to delete an answer');
             session()->flash('icon', 'error');
+            return back();
         }
-
-        return back();
     }
 }

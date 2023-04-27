@@ -14,6 +14,10 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        // Profile Permissions
+        Permission::create(['name' => 'view profile']);
+        Permission::create(['name' => 'edit profile']);
+        Permission::create(['name' => 'delete profile']);
         // Tags Permissions
         Permission::create(['name' => 'view tags']);
         Permission::create(['name' => 'create tags']);
@@ -39,13 +43,13 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'down votes']);
         Permission::create(['name' => 'delete votes']);
 
-        // Flags Permissions
-        Permission::create(['name' => 'view flags']);
-        Permission::create(['name' => 'create flags']);
-        Permission::create(['name' => 'edit flags']);
-        Permission::create(['name' => 'delete flags']);
-        Permission::create(['name' => 'approve flags']);
-        Permission::create(['name' => 'reject flags']);
+        // reports Permissions
+        Permission::create(['name' => 'view reports']);
+        Permission::create(['name' => 'create report']);
+        Permission::create(['name' => 'edit report']);
+        Permission::create(['name' => 'delete report']);
+        // Permission::create(['name' => 'approve report']);
+        // Permission::create(['name' => 'reject report']);
 
         // Users Permissions
         Permission::create(['name' => 'view users']);
@@ -76,6 +80,9 @@ class RolesAndPermissionsSeeder extends Seeder
         // Assign Permissions to Roles
         $superAdminRole->syncPermissions(Permission::all());
         $adminRole->syncPermissions([
+            'view profile',
+            'edit profile',
+            'delete profile',
             'view tags',
             'create tags',
             'edit tags',
@@ -93,14 +100,15 @@ class RolesAndPermissionsSeeder extends Seeder
             'up votes',
             'down votes',
             'delete votes',
-            'view flags',
-            'create flags',
-            'edit flags',
-            'delete flags',
-            'approve flags',
-            'reject flags'
+            'view reports',
+            'create report',
+            'edit report',
+            'edit report',
         ]);
         $userRole->syncPermissions([
+            'view profile',
+            'edit profile',
+            'delete profile',
             'view tags',
             'view questions',
             'create questions',
@@ -115,9 +123,9 @@ class RolesAndPermissionsSeeder extends Seeder
             'up votes',
             'down votes',
             'delete votes',
-            'create flags',
-            'edit flags',
-            'delete flags'
+            'create report',
+            'edit report',
+            'edit report'
         ]);
     }
 }
