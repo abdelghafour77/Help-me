@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\LogController;
 use Illuminate\Validation\Rules\Password;
 
 class PasswordController extends Controller
@@ -24,6 +25,11 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('status', 'password-updated');
+        $log = new LogController();
+        $log->logMe('success', 'Password updated successfully for user ID: ' . $request->user()->id, 'PUT', $request->ip());
+
+        session()->flash('message', 'Password updated successfully');
+        session()->flash('icon', 'success');
+        return back();
     }
 }
