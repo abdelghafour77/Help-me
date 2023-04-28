@@ -14,6 +14,8 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        // Dashboard Permissions
+        Permission::create(['name' => 'view dashboard']);
         // Profile Permissions
         Permission::create(['name' => 'view profile']);
         Permission::create(['name' => 'edit profile']);
@@ -115,7 +117,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'view profile',
             'edit profile',
             'delete profile',
-            'view tags',
             'view questions',
             'create questions',
             'edit questions',
