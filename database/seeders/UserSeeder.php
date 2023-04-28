@@ -22,6 +22,15 @@ class UserSeeder extends Seeder
             'score' => 377,
             'password' => bcrypt('password'),
         ])->assignRole('admin');
+        \App\Models\User::factory()->create([
+            'full_name' => 'Super Admin',
+            'username' => 's_admin',
+            'email' => 'super.admin@admin.com',
+            'phone' => '0620785938',
+            'birthday' => '2000-11-28',
+            'score' => 377,
+            'password' => bcrypt('password'),
+        ])->assignRole('super admin');
         // create 10 user using factory and assign role user
         \App\Models\User::factory(10)->create()->each(function ($user) {
             $user->assignRole('user');

@@ -66,7 +66,7 @@ class RoleController extends Controller
     {
         $log = new LogController();
         if (auth()->user()) {
-            if (auth()->user()->hasPermissionTo('create role')) {
+            if (auth()->user()->hasPermissionTo('create roles')) {
                 // dd($request->all());
                 $role = Role::create(['name' => $request->name]);
                 // assign permission to role
@@ -96,7 +96,7 @@ class RoleController extends Controller
     {
         $log = new LogController();
         if (auth()->user()) {
-            if (auth()->user()->hasPermissionTo('edit role')) {
+            if (auth()->user()->hasPermissionTo('edit roles')) {
                 // dd($request->all());
                 $role = Role::findById($id);
                 $role->name = $request->name;
@@ -130,7 +130,7 @@ class RoleController extends Controller
     {
         $log = new LogController();
         if (auth()->user()) {
-            if (auth()->user()->hasPermissionTo('delete role')) {
+            if (auth()->user()->hasPermissionTo('delete roles')) {
                 $role = Role::findById($id);
                 $role->delete();
                 session()->flash('message', 'Role deleted successfully');
