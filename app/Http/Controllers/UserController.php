@@ -21,6 +21,15 @@ class UserController extends Controller
         return view('users', compact('users', 'roles'));
     }
 
+    public function deletedUsers()
+    {
+        // get all deleted users
+        $users = User::onlyTrashed()->get();
+        // get all roles
+        $roles = Role::all();
+        // return view
+        return view('deleted_users', compact('users', 'roles'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -50,10 +59,14 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        // get user and role even if user is deleted
+        $user = User::withTrashed()->find($id);
+        $role = $user->roles->first()->name;
+
         // return ajax response with user data and role of user
         return response()->json([
-            'user' => User::find($id),
-            'role' => User::find($id)->roles->first()->name
+            'user' => $user,
+            'role' => $role
         ]);
     }
 
@@ -62,40 +75,61 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request->all());
-        // get user
-        $user = User::find($id);
-        $user->update($request->all());
-        // update image if exists
-        if ($request->hasFile('image')) {
-            $user->update([
-                'image' => $request->image->store('image/user', 'public')
-            ]);
+        if (auth()->user()->hasPermissionTo('update users')) {
+            $user = User::find($id);
+            $user->update($request->all());
+            // update image if exists
+            if ($request->hasFile('image')) {
+                $user->update([
+                    'image' => $request->image->store('image/user', 'public')
+                ]);
+            }
+            // remove all roles
+            $user->removeRole($user->roles->first()->name);
+            // assign role
+            $user->assignRole($request->role);
+            // update user
+
+            // return view flash success message
+            session()->flash('message', 'User updated successfully');
+            session()->flash('icon', 'success');
+
+            return redirect()->back();
+        } else {
+            // return view flash success message
+            session()->flash('message', 'You are not authorized to update users');
+            session()->flash('icon', 'error');
+            redirect()->back();
         }
-        // remove all roles
-        $user->removeRole($user->roles->first()->name);
-        // assign role
-        $user->assignRole($request->role);
-        // update user
-
-        // return view flash success message
-        session()->flash('message', 'User updated successfully');
-        session()->flash('icon', 'success');
-
-        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    public function forceDeleteUser(string $id)
+    {
+        if (auth()->user()->hasPermissionTo('delete deleted users') == false) {
+            abort(403);
+        }
+        // get user
+        $user = User::withTrashed()->find($id);
+        // force delete user
+        $user->forceDelete();
+        // return view flash success message
+        session()->flash('message', 'User deleted successfully');
+        session()->flash('icon', 'success');
+
+        return redirect()->back();
+    }
     public function destroy(string $id)
     {
-        // get user
-        $user = User::find($id);
+        // soft delete the user with id
+        User::find($id)->delete();
         // remove all roles
-        $user->removeRole($user->roles->first()->name);
-        // delete user
-        $user->delete();
+        // $user->removeRole($user->roles->first()->name);
+
+
+
 
         session()->flash('message', 'User deleted successfully');
         session()->flash('icon', 'success');

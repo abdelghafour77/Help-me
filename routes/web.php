@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function () {
         return view('settings');
     });
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
     // Tag
     Route::get('/admin/tag/{id}', [TagController::class, 'edit']);
@@ -56,7 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/tags', [TagController::class, 'allTags']);
 
     // User
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/deleted-users', [UserController::class, 'deletedUsers']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
+    Route::delete('/users-deleted/{id}', [UserController::class, 'forceDeleteUser']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/admin/users/{id}', [UserController::class, 'edit']);
 
