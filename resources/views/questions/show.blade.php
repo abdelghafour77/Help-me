@@ -283,7 +283,7 @@
                         $('#btn-downvote-' + id).addClass('text-primary-700');
                         $('#btn-upvote-' + id).removeClass('text-primary-700');
                         // change parametre of onclick function
-                        $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 0 + ')');
+                        $('#btn-upvote-' + id).attr('onclick', 'vote(' + id + ', ' + 1 + ')');
                         $('#btn-downvote-' + id).attr('onclick', 'vote(' + id + ', ' + -1 + ')');
 
                     } else {
