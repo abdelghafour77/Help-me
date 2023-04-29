@@ -12,6 +12,6 @@ class VoteSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Vote::factory()->count(100)->create();
+        \App\Models\Vote::factory()->count(700)->create();
     }
 }

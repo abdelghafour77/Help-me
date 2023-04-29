@@ -20,16 +20,15 @@ class ReportController extends Controller
                 // dd($reports);
                 return view('reports', compact('reports'));
             } else {
-                return response()->json([
-                    'message' => 'You are not allowed to view reports',
-                    'icon' => 'error',
-                ], 401);
+                session()->flash('message', 'You are not allowed to view reports');
+                session()->flash('icon', 'error');
+                return redirect()->back();
             }
         } else {
-            return response()->json([
-                'message' => 'You must be logged in to view reports',
-                'icon' => 'error',
-            ], 401);
+
+            session()->flash('message', 'You must be logged in to view reports');
+            session()->flash('icon', 'error');
+            return redirect()->back();
         }
     }
 

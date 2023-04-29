@@ -23,6 +23,7 @@ class QuestionFactory extends Factory
             'view_count' => rand(0, 1000),
             // 'answers_count' => rand(0, 10),
             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }

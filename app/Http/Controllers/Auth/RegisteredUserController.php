@@ -45,6 +45,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             // 'avatar' => $request->avatar ? $request->file('avatar')->store('img/user', 'public') : 'avatar.png',
         ]);
+        // add role user to user
+        $user->assignRole('user');
 
         event(new Registered($user));
 
