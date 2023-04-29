@@ -27,16 +27,11 @@ use App\Http\Controllers\QuestionController;
 Route::get('/', function () {
     return view('landing-page');
 });
-// Route::get('/a', function () {
-//     return view('landing-page');
-// });
-Route::get('/me', function () {
-    return view('test');
-});
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/tag/{slug}', [TagController::class, 'getTagQuestions']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -49,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/tag/{id}', [TagController::class, 'edit']);
     Route::delete('/tags/{tag}', [TagController::class, 'destroy']);
     Route::get('/tags', [TagController::class, 'index']);
-    Route::get('/tag/{slug}', [TagController::class, 'getTagQuestions']);
+
     Route::post('/tags', [TagController::class, 'store']);
     Route::put('/tags/{tag}', [TagController::class, 'update']);
     Route::get('/admin/tags', [TagController::class, 'allTags']);
@@ -66,9 +61,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/logs', [LogController::class, 'index']);
     Route::get('/admin/logs/{id}', [LogController::class, 'edit']);
 
-    // Search
-    Route::get('/search', [SearchController::class, 'search']);
-
     // Role
     Route::get('/roles', [RoleController::class, 'index']);
     Route::get('/admin/roles/{id}', [RoleController::class, 'edit']);
@@ -80,22 +72,23 @@ Route::middleware('auth')->group(function () {
     Route::post('/report', [ReportController::class, 'store']);
     Route::get('/reports', [ReportController::class, 'index']);
     Route::get('/admin/reports/{id}', [ReportController::class, 'edit']);
+
+    // Question
+    Route::get('/askQuestion', [QuestionController::class, 'create']);
+    Route::post('/askQuestion', [QuestionController::class, 'store']);
+    Route::delete('/question/{id}', [QuestionController::class, 'destroy']);
+    Route::get('/question/{id}/edit', [QuestionController::class, 'edit']);
+    // Route::put('/question/{id}', [QuestionController::class, 'update']);
+
+    // Answer
+    Route::post('/answer', [AnswerController::class, 'store']);
+    Route::delete('/answer/{id}', [AnswerController::class, 'destroy']);
 });
-// Question
-Route::get('/questions', [QuestionController::class, 'index']);
-Route::get('/askQuestion', [QuestionController::class, 'create']);
-Route::post('/askQuestion', [QuestionController::class, 'store']);
-Route::get('/question/{slug}', [QuestionController::class, 'show']);
-Route::delete('/question/{id}', [QuestionController::class, 'destroy']);
-Route::get('/question/{id}/edit', [QuestionController::class, 'edit']);
-// Route::put('/question/{id}', [QuestionController::class, 'update']);
-
-// Answer
-Route::post('/answer', [AnswerController::class, 'store']);
-Route::delete('/answer/{id}', [AnswerController::class, 'destroy']);
-
 // like
 Route::post('/vote', [VoteController::class, 'vote']);
-
+Route::get('/questions', [QuestionController::class, 'index']);
+Route::get('/question/{slug}', [QuestionController::class, 'show']);
+// Search
+Route::get('/search', [SearchController::class, 'search']);
 
 require __DIR__ . '/auth.php';

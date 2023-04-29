@@ -32,8 +32,7 @@
             </main>
             <x-dashboard.footer-dashboard />
         </div>
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
-
+    </div>
 
 </body>
 

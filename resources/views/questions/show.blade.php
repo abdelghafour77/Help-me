@@ -14,8 +14,7 @@
                     <footer class="flex items-center justify-between mb-7">
                         <H2 class="text-3xl font-bold text-gray-900 dark:text-gray-200">{{ $question->title }}</H2>
                         <button id="dropdownQuestionButton" data-dropdown-toggle="dropdownQuestion"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600"
-                            type="button">
+                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
                                 </path>
@@ -82,8 +81,7 @@
                         @endauth
                         <article class="grid grid-cols-12 my-8" id="answer-{{ $answer->id }}">
                             <div class="col-span-3 md:col-span-1 flex flex-col justify-center items-center mb-2 space-y-2">
-                                <button id="btn-upvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $up ?? '1' == 1 ? '-1' : 1 }}')"
-                                    class="{{ $up_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
+                                <button id="btn-upvote-{{ $answer->id }}" type="button" onclick="vote('{{ $answer->id }}','{{ $up ?? '1' == 1 ? '-1' : 1 }}')" class="{{ $up_class ?? 'bg-gray-100 dark:bg-gray-700' }} py-1.5 px-3 inline-flex items-center rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                                     </svg>
@@ -115,8 +113,7 @@
                                         </p>
                                     </div>
                                     <button id="dropdownComment-{{ $loop->index }}-Button" data-dropdown-toggle="dropdownComment-{{ $loop->index }}"
-                                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600"
-                                        type="button">
+                                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
                                             </path>
@@ -141,8 +138,7 @@
                                                 @endif
                                             @endauth
                                             <li>
-                                                <a href="#" onclick="changeModal('answer',{{ $answer->id }})" data-modal-target="report-modal" data-modal-toggle="report-modal"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                                <a href="#" onclick="changeModal('answer',{{ $answer->id }})" data-modal-target="report-modal" data-modal-toggle="report-modal" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -159,24 +155,35 @@
             </section>
         </div>
         <div class="p-4 mb-4 col-span-2 bg-gray-50 border border-gray-200 rounded-lg shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800 xl:mb-0">
-            <h1 class="mb-4 font-black text-2xl text-gray-900 dark:text-gray-200">{{ __('Your Answer') }}:</h1>
-            <form action="/answer" method="POST">
-                @csrf
-                <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
-                <x-tinymce-editor />
-                {{-- error --}}
-                @error('desciption')
-                    <div class="mt-2 text-sm text-red-600">
-                        {{ $message }}
-                    </div>
-                @enderror
-                <div class="relative pt-12">
+            @auth
+                <h1 class="mb-4 font-black text-2xl text-gray-900 dark:text-gray-200">{{ __('Your Answer') }}:</h1>
+                <form action="/answer" method="POST">
+                    @csrf
+                    <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
+                    <x-tinymce-editor />
+                    {{-- error --}}
+                    @error('desciption')
+                        <div class="mt-2 text-sm text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <div class="relative pt-12">
 
-                    <button type="submit" class="absolute bottom-0 right-0 inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                        {{ __('Send answer') }}
-                    </button>
+                        <button type="submit" class="absolute bottom-0 right-0 inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                            {{ __('Send answer') }}
+                        </button>
+                    </div>
+                </form>
+            @else
+                {{-- You must log to answer this question --}}
+                <div class="flex items-center justify-center p-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-200 dark:border-gray-300 rounded-lg dark:text-gray-200 dark:bg-gray-700">
+                    <svg class="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2.5a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM8 10a2 2 0 114 0 2 2 0 01-4 0zm1.5 2.5a.5.5 0 100-1 .5.5 0 000 1z">
+                        </path>
+                    </svg>
+                    <span>{{ __('You must log to answer this question') }}</span>
                 </div>
-            </form>
+            @endauth
         </div>
         <!--Info  -->
         <div class="p-4  bg-gray-50 border border-gray-200 h-fit rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
@@ -204,11 +211,11 @@
                             <a href="/tag/{{ $tag->slug }}" class="inline-flex border border-gray-200 shadow-sm items-center px-2 py-1 m-1 text-xs font-medium {{ $c ? 'text-gray-700' : 'text-white' }}  rounded-full bg-{{ $tag->color }}">{{ $tag->name }}</a>
                         @endforeach
                     </div>
-                    <div class="pb-3">
+                    {{-- <div class="pb-3">
                         <h2 class="text-2xl pb-3 text-gray-900 dark:text-white">
                             {{ __('Other Suggestions') }}
                         </h2>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
@@ -242,8 +249,7 @@
                         <div>
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <textarea id="description" name="description" rows="3"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Description"></textarea>
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Description"></textarea>
                         </div>
                         <div>
                             <button type="button" id="sendReportBtn" onclick="sendReport('answer', '')"

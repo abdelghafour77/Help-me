@@ -4,39 +4,51 @@
         <div class="pb-4 grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">
             <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                 <div class="w-full">
-                    <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">{{ __('New questions') }}</h3>
+                    <h3 class="text-3xl font-normal text-gray-500 dark:text-gray-400">{{ __('New questions') }}</h3>
                     <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">{{ $questionsCount }}</span>
                     <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-                        <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
-                            </svg>
+                        <span class="flex items-center mr-1.5 text-lg {{ $percentageQuestionsChange <= 0 ? 'text-red-500 dark:text-red-400' : 'text-green-500 dark:text-green-400' }}">
+                            @if ($percentageQuestionsChange <= 0)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25" />
+                                </svg>
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            @endif
                             {{ $percentageQuestionsChange }}%
                         </span>
                         {{ __('Since last month') }}
                     </p>
                 </div>
-                <div class="w-full" id="new-products-chart"></div>
+                {{-- <div class="w-full" id="new-products-chart"></div> --}}
             </div>
             <div class="pb-4 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                 <div class="w-full">
-                    <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">{{ __('Users') }}</h3>
+                    <h3 class="text-3xl font-normal text-gray-500 dark:text-gray-400">{{ __('Users') }}</h3>
                     <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">{{ $usersCount }}</span>
                     <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-                        <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
-                            </svg>
+                        <span class="flex items-center mr-1.5 text-lg {{ $percentageChange <= 0 ? 'text-red-500 dark:text-red-400' : 'text-green-500 dark:text-green-400' }}">
+                            @if ($percentageChange <= 0)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25" />
+                                </svg>
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            @endif
                             {{ $percentageChange }}%
                         </span>
                         {{ __('Since last month') }}
                     </p>
                 </div>
-                <div class="w-full" id="week-signups-chart"></div>
+                {{-- <div class="w-full" id="week-signups-chart"></div> --}}
             </div>
             <div class="pb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                 <div class="w-full">
-                    <h3 class="mb-2 text-base font-normal text-gray-500 dark:text-gray-400">Audience by age</h3>
+                    <h3 class="mb-2 text-2xl font-normal text-gray-500 dark:text-gray-400">Audience by age</h3>
                     <div class="flex items-center mb-2">
                         <div class="w-16 text-sm font-medium dark:text-white">50+</div>
                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
