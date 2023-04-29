@@ -13,12 +13,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        // get all users
-        $users = User::all();
-        // get all roles
-        $roles = Role::all();
-        // return view
-        return view('users', compact('users', 'roles'));
+        if (auth()->user()->hasPermissionTo('view users') == false) {
+            abort(403);
+        } else {
+            // get all users except users that has super admin role or role admin
+            if (auth()->user()->hasRole('admin')) {
+                $users = User::whereDoesntHave('roles', function ($query) {
+                    $query->where('name', 'super admin')->orWhere('name', 'admin');
+                })->get();
+            } else if (auth()->user()->hasRole('super admin')) {
+                $users = User::all();
+            }
+            // get all roles
+            $roles = Role::all();
+            // return view
+            return view('users', compact('users', 'roles'));
+        }
     }
 
     public function deletedUsers()

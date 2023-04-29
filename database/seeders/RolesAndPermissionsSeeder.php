@@ -88,6 +88,8 @@ class RolesAndPermissionsSeeder extends Seeder
         // Assign Permissions to Roles
         $superAdminRole->syncPermissions(Permission::all());
         $adminRole->syncPermissions([
+            'view users',
+            'view dashboard',
             'view profile',
             'edit profile',
             'delete profile',
