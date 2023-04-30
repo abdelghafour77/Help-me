@@ -1,4 +1,5 @@
 <x-dashboard-layout>
+    <x-slot name="title">{{ __('Dashboard') }}</x-slot>
     <div class="px-4 pt-4 min-h-screen">
 
         <div class="pb-4 grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">

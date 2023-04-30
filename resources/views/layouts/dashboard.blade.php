@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>Document</title>
+    <title>Help Me - {{ $title ?? '' }}</title>
     <script async>
         if (localStorage.getItem('color-theme') === 'dark') {
             document.documentElement.classList.add('dark')
