@@ -73,7 +73,7 @@
                                             </td>
 
                                             <td class=" text-center p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                <p class="truncate max-w-24 md:max-w-64">{{ $report->description ?? 'Without description' }}</p>
+                                                <p class="truncate max-w-sm">{{ $report->description ?? 'Without description' }}</p>
                                             </td>
                                             <td class="text-center  p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                 {{ $report->user_id }}

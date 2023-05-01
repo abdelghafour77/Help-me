@@ -33,7 +33,7 @@ class UpdateTagRequest extends FormRequest
     }
     public function failedValidation(Validator $validator)
     {
-        dd($validator);
+        // dd($validator);
         $log = new LogController();
 
         $errors = implode(' ', $validator->errors()->all());

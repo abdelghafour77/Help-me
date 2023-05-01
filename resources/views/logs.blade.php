@@ -115,6 +115,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="pt-4">
+                                {{ $logs->links() }}
+                            </div>
                         @else
                             <div class="flex flex-col items-center justify-center">
                                 <div class="flex flex-col items-center justify-center">
