@@ -11,8 +11,8 @@ class LogController extends Controller
 
     public function index()
     {
-        // order by created_at desc
-        $logs = Log::all()->sortByDesc('id');
+        // order by created_at desc and paginate 10 logs per page
+        $logs = Log::orderBy('created_at', 'desc')->paginate(10);
         return view('logs', compact('logs'));
     }
     public function logMe($type, $message, $method, $ip)

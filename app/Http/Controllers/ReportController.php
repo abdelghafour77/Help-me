@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Termwind\Components\Dd;
+use Illuminate\Http\Request;
+use App\Http\Controllers\LogController;
+use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
@@ -14,18 +15,20 @@ class ReportController extends Controller
      */
     public function index()
     {
+        $log = new LogController();
         if (auth()->user()) {
             if (auth()->user()->hasPermissionTo('view reports')) {
                 $reports = Report::get();
-                // dd($reports);
+                $log->logMe("info", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " viewed reports", "GET", request()->ip());
                 return view('reports', compact('reports'));
             } else {
+                $log->logMe("warning", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " tried to view reports", "GET", request()->ip());
                 session()->flash('message', 'You are not allowed to view reports');
                 session()->flash('icon', 'error');
                 return redirect()->back();
             }
         } else {
-
+            $log->logMe("warning", "Guest tried to view reports", "GET", request()->ip());
             session()->flash('message', 'You must be logged in to view reports');
             session()->flash('icon', 'error');
             return redirect()->back();
@@ -46,6 +49,7 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         if (auth()->user()) {
+            $log = new LogController();
             if (auth()->user()->hasPermissionTo('create report')) {
                 // Validate the request data
                 $validator = Validator::make($request->all(), [
@@ -59,6 +63,7 @@ class ReportController extends Controller
 
                 // If validation fails, return a JSON response with errors
                 if ($validator->fails()) {
+                    $log->logMe("warning", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " tried to create a report", "POST", request()->ip());
                     return response()->json([
                         'message' => 'Validation error',
                         'icon' => 'error',
@@ -83,7 +88,7 @@ class ReportController extends Controller
                 ]);
                 // Save the report to the database
                 $report->save();
-
+                $log->logMe("info", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " created a report", "POST", request()->ip());
                 // Return a JSON response indicating success
                 return response()->json([
                     'message' => 'Report created successfully',
@@ -91,12 +96,14 @@ class ReportController extends Controller
                     'data' => $report,
                 ]);
             } else {
+                $log->logMe("warning", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " tried to create a report", "POST", request()->ip());
                 return response()->json([
                     'message' => 'You are not allowed to report',
                     'icon' => 'error',
                 ], 401);
             }
         } else {
+            $log->logMe("warning", "Guest tried to create a report", "POST", request()->ip());
             return response()->json([
                 'message' => 'You must be logged in to report',
                 'icon' => 'error',
@@ -117,24 +124,27 @@ class ReportController extends Controller
      */
     public function edit(string $id)
     {
+        $log = new LogController();
         if (auth()->user()) {
             if (auth()->user()->hasPermissionTo('view reports')) {
 
                 $report = Report::with('reportType', 'user', 'question')->findOrFail($id);
                 $report->user->role = $report->user->roles()->first()->name;
-
+                $log->logMe("info", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " viewed report ID: " . $report->id, "GET", request()->ip());
                 return response()->json([
                     'message' => 'Report fetched successfully',
                     'icon' => 'success',
                     'data' => $report,
                 ]);
             } else {
+                $log->logMe("warning", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " tried to view report ID: " . $id, "GET", request()->ip());
                 return response()->json([
                     'message' => 'You are not allowed to view reports',
                     'icon' => 'error',
                 ], 401);
             }
         } else {
+            $log->logMe("warning", "Guest tried to view report ID: " . $id, "GET", request()->ip());
             return response()->json([
                 'message' => 'You must be logged in to view reports',
                 'icon' => 'error',
