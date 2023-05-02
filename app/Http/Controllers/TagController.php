@@ -65,10 +65,16 @@ class TagController extends Controller
         if (auth()->user()) {
             if (auth()->user()->hasPermissionTo('create tags')) {
 
-
+                // dd($request->all());
                 $tag = $request->validated();
 
                 $tag['slug'] = Str::slug($tag['name']);
+                // if image is uploaded
+                if ($request->hasFile('post_image')) {
+                    $image = $request->file('post_image')->store('image/tag', 'public');
+                    $image = Str::after($image, 'image/tag/');
+                    $tag['image'] = $image;
+                }
 
                 $ta = Tag::create($tag);
 
