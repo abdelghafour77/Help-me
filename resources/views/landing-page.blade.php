@@ -1,4 +1,7 @@
 <x-home-layout>
+    <x-slot name="title">
+        {{ __('Help Me') }}
+    </x-slot>
     <!-- Start block -->
     <section class="bg-white dark:bg-gray-900 h-screen flex items-center">
         <div class="grid max-w-screen-xl px-4 py-10 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12 lg:py-20">
@@ -63,7 +66,8 @@
                 <p class="text-lg font-medium text-purple-600 dark:text-purple-500">Trusted</p>
                 <h2 class="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl dark:text-white">Trusted by over {{ App\Models\User::count() }} users </h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-                    Help Me is a question and answer community-driven website focused on programming and technology topics. Users can ask and answer questions, vote on answers, and earn reputation points for their contributions. The site also includes features such as tags, search, and moderation tools to help users
+                    Help Me is a question and answer community-driven website focused on programming and technology topics. Users can ask and answer questions, vote on answers, and earn reputation points for their contributions. The site also includes features such as tags,
+                    search, and moderation tools to help users
                     find and maintain high-quality content.
                 </p>
 
@@ -88,7 +92,8 @@
 
                 <div>
                     <svg class="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 dark:text-purple-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
+                        <path
+                            d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
                         </path>
                     </svg>
                     <h3 class="mb-2 text-2xl font-bold dark:text-white">{{ App\Models\Answer::count() }}+ Answers</h3>
