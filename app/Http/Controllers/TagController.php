@@ -70,8 +70,8 @@ class TagController extends Controller
 
                 $tag['slug'] = Str::slug($tag['name']);
                 // if image is uploaded
-                if ($request->hasFile('post_image')) {
-                    $image = $request->file('post_image')->store('image/tag', 'public');
+                if ($request->hasFile('image')) {
+                    $image = $request->file('image')->store('image/tag', 'public');
                     $image = Str::after($image, 'image/tag/');
                     $tag['image'] = $image;
                 }
@@ -153,7 +153,15 @@ class TagController extends Controller
             if (auth()->user()->hasPermissionTo('edit tags')) {
                 $log->logMe("info", "User ID: " . auth()->user()->id . " - " . auth()->user()->name . " updated tag ID: $tag->id", "PUT", $request->ip());
                 // update tag
-                $tag->update($request->validated());
+                $tag->name = $request->name;
+                $tag->slug = Str::slug($request->name);
+                $tag->description = $request->description;
+                if ($request->hasFile('image')) {
+                    $image = $request->file('image')->store('image/tag', 'public');
+                    $image = Str::after($image, 'image/tag/');
+                    $tag->image = $image;
+                }
+                $tag->update();
                 $ta = Tag::find($tag->id);
                 $log = new LogController();
                 $log->logMe("info", "Updated tag ID: $ta->id", "PUT", $request->ip());

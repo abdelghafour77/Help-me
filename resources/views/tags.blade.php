@@ -139,23 +139,25 @@
                 </div>
 
                 <div class="relative">
-                    <div :class="imageUrl && 'border-orange-500 dark:border-pink-500'" class="flex justify-center items-center border-2 border-gray-300 dark:border-dark-line border-dashed rounded-md h-48 overflow-y-hidden" x-data="fileUpload">
+                    <div x-data="fileUpload" :class="imageUrl && 'border-blue-600 dark:border-blue-500'"
+                        class="@error('image') border-red-500 hover:border-red-600 @enderror flex justify-center items-center border-2 border-gray-300 hover:border-blue-500 hover:bg-gray-300 dark:hover:bg-gray-800 hover:bg-opacity-25 dark:border-dark-line border-dashed rounded-md h-36 overflow-y-hidden">
                         <template x-if="!imageUrl">
-                            <div class="space-y-1 text-center px-6 pt-5 pb-6 w-full">
+                            <label class="space-y-1 cursor-pointer text-center px-6 pt-5 pb-6 w-full" for="image">
                                 <svg aria-hidden="true" class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48">
                                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" />
                                 </svg>
                                 <div class="text-sm text-gray-600 dark:text-gray-400">
-                                    <label class="relative cursor-pointer bg-transparent rounded-md font-medium text-orange-500 dark:text-pink-500" for="post_image">
+                                    <label class="relative bg-transparent rounded-md font-medium text-blue-600 dark:text-blue-500">
                                         <p class="text-gray-500 dark:text-white space-y-1">
-                                            <span class="text-orange-500 dark:text-pink-500">Upload a file</span> or drag and drop
-                                            <span class="block text-xs text-gray-500">PNG, JPG up to *MB</span>
+                                            <span class="text-blue-600 dark:text-blue-500">Upload a Image</span>
+                                            or drag and drop
+                                            <span class="block text-xs text-gray-500">PNG, JPG up to 5MB</span>
                                         </p>
-                                        {{-- File input moved outside of template so to not be overwritten by the x-if --}}
                                     </label>
                                 </div>
-                            </div>
+                            </label>
+
                         </template>
 
                         <template x-if="imageUrl">
@@ -163,12 +165,11 @@
                                 <div class="hidden group-hover:flex absolute justify-center items-center m-auto text-white tracking-wider uppercase bg-transparent h-full w-full hover:bg-black/75 hover:cursor-pointer" x-on:click="imageUrl = ''">
                                     Remove
                                 </div>
-                                <img :src="imageUrl"id="image" src="" alt="" x-bind:class="{ 'hidden': !imageUrl }">
+                                <img :src="imageUrl" alt="" x-bind:class="{ 'hidden': !imageUrl }">
                             </div>
                         </template>
 
-                        <input class="sr-only" id="post_image" name="post_image" type="file" x-on:change="selectFile">
-                        {{--  --}}
+                        <input class="sr-only" id="image" name="image" type="file" x-on:change="selectFile">
                         <input value="" id="post_header_delete" name="post_header_delete" type="hidden" />
                     </div>
                     @error('image')
@@ -219,20 +220,24 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    // console.log(data);
+                    // Update input fields
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#slug').val(data.slug);
                     $('#description').val(data.description);
                     $('#color').val(data.color);
-                    // trigger  #color using alpine js
-                    document.getElementById('color').dispatchEvent(new Event('input'));
-                    // change src img inside #image
-                    $('#image').attr('src', 'http://127.0.0.1:8000/storage/image/tag/' + data.image);
 
+                    // Trigger #color input event using Alpine.js
+                    const colorInput = document.getElementById('color');
+                    colorInput.dispatchEvent(new Event('input'));
+
+                    // Update image source and URL
+                    const imageUrl = 'http://127.0.0.1:8000/storage/image/tag/' + data.image;
+                    const image = document.getElementById('post_header_delete');
+                    image.setAttribute('value', imageUrl);
                 }
-
             });
+
         }
 
         function addtag() {
@@ -261,9 +266,10 @@
 
 
 
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('fileUpload', () => ({
+        function fileUpload() {
+            return {
                 imageUrl: '',
+
                 selectFile(event) {
                     const file = event.target.files[0]
                     const reader = new FileReader()
@@ -273,8 +279,12 @@
                     reader.readAsDataURL(file)
                     reader.onload = () => (this.imageUrl = reader.result)
                 },
-            }))
-        })
+            }
+        }
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('fileUpload', fileUpload)
+        });
     </script>
     <script>
         function app() {

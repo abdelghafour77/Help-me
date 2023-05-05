@@ -28,7 +28,7 @@ class UpdateTagRequest extends FormRequest
             'slug' => 'string|max:255|unique:tags,slug,' . $this->tag->id,
             'color' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
     public function failedValidation(Validator $validator)
